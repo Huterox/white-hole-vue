@@ -15,12 +15,17 @@
             >
           </div>
           <div style="display:inline-block;margin-left: 5%;width: 60%">
-            <p class="message" style="font-weight:bold">{{message.name}}</p>
+            <p class="message" style="font-weight:bold">
+              <router-link class="alink" to="/userinfo">
+              {{message.name}}
+              </router-link>
+            </p>
             <p style="font-weight: lighter;color: #3e71be" class="message"
 
             >
+              <router-link class="alink" to="/quiz/quizshow">
               {{message.type}}: &nbsp;{{message.info}}
-
+              </router-link>
             </p>
             <p class="message">
               阅读：
@@ -103,4 +108,11 @@ export default {
   text-overflow:ellipsis;
   white-space: nowrap;
 }
+
+.alink{
+
+  text-decoration: none;
+  color: #333333;
+}
+
 </style>

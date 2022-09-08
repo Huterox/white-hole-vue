@@ -10,7 +10,7 @@
 
           <div style="display:inline-block;margin-left: 5%;width: 60%">
             <p class="message" style="font-weight:bold" >
-              <router-link to="/quiz/quizshow">
+              <router-link class="alink" to="/quiz/quizshow">
                 {{message.name}}
               </router-link>
             </p>
@@ -98,4 +98,11 @@ export default {
   text-overflow:ellipsis;
   white-space: nowrap;
 }
+.alink{
+
+  text-decoration: none;
+  color: #333333;
+}
+
+
 </style>

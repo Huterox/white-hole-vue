@@ -51,12 +51,18 @@ import piaoLiu from "../views/treehole/piaoLiu";
 import riZhi from "../views/treehole/riZhi";
 import baiDongZhi from "../views/treehole/baiDongZhi";
 import haoYouChat from "../views/treehole/haoYou/haoYouChat";
+import userinfo from "../views/userInfo/userinfo";
+import blogshowingme from "../views/blogs/blogshowingme";
+
+
 Vue.use(Router)
 
 export default new Router({
   mode: "history",
   //首页的都是大模块所以必须保持独立
   routes: [
+
+
     {
       path: '/',
       name: 'homepage',
@@ -177,6 +183,14 @@ export default new Router({
       path: '/othersSpace',
       name: 'othersSpace',
       component: othersSpace
+    },
+
+    {
+
+      path: "/userinfo",
+      name: userinfo,
+      component: userinfo
+
     },
 
     {
@@ -340,6 +354,11 @@ export default new Router({
           path: 'thumbNews',
           name: 'thumbNews',
           component: thumbNews
+        },
+        {
+          path: '/blogshowingme',
+          name: 'blogshowingme',
+          component: blogshowingme
         },
 
 
