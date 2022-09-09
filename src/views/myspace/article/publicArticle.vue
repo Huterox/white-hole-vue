@@ -15,7 +15,11 @@
             >
           </div>
           <div style="display:inline-block;margin-left: 5%;width: 60%">
-            <p class="message" style="font-weight:bold">{{message.name}}</p>
+            <p class="message" style="font-weight:bold">
+              <router-link class="alink" to="/blogshowingme">
+                {{message.name}}
+              </router-link>
+            </p>
             <p style="font-weight: lighter" class="message"
 
             >
@@ -121,5 +125,11 @@ export default {
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
+}
+
+.alink{
+
+  text-decoration: none;
+  color: #333333;
 }
 </style>
