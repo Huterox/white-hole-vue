@@ -1,14 +1,14 @@
 <template>
 <div>
 
+  我是文章的一个页面
+
 </div>
 </template>
 
 <script>
-import Home from "../home/home";
 export default {
-  name: "show",
-  components: {Home}
+  name: "blogshow"
 }
 </script>
 

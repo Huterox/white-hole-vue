@@ -15,7 +15,13 @@
             >
           </div>
           <div style="display:inline-block;margin-left: 5%;width: 60%">
-            <p class="message" style="font-weight:bold">{{message.name}}</p>
+            <p class="message" style="font-weight:bold">
+
+              <router-link class="alink" to="/blogshow">
+              {{message.name}}
+              </router-link>
+
+            </p>
             <p style="font-weight: lighter" class="message"
 
             >
@@ -31,12 +37,8 @@
               <i class="el-icon-star-off"></i>
               {{message.favorite}}
               &nbsp;&nbsp;
-              权限：
-              <i class="el-icon-coordinate"></i>
-              {{message.level}}
-              &nbsp;&nbsp;
 
-              <i v-if="message.level>=2">fork:{{message.fork}}</i>
+              fork:{{message.fork}}
             </p>
 
           </div>
@@ -70,12 +72,12 @@ export default {
       Messages:[
         {"info":"Spring 是一个轻量级的开发框架",
           "name":"Spring 5 核心原理解析",
-          "number": 999,"data":"2022-3-27",favorite: 999,level: 1,
+          "number": 999,"data":"2022-3-27",favorite: 999,
           "fork": 2,"image":"/static/temporary/headpic.jpg"
         },
         {"info":"Spring 是一个轻量级的开发框架",
           "name":"Spring 5 核心原理解析",
-          "number": 999,"data":"2022-3-27",favorite: 999,level: 1,
+          "number": 999,"data":"2022-3-27",favorite: 999,
           "fork": 2,"image":"/static/temporary/headpic.jpg"
         },
         {"info":"Spring 是一个轻量级的开发框架",
@@ -85,27 +87,27 @@ export default {
         },
         {"info":"Spring 是一个轻量级的开发框架",
           "name":"Spring 5 核心原理解析",
-          "number": 999,"data":"2022-3-27",favorite: 999,level: 3,
+          "number": 999,"data":"2022-3-27",favorite: 999,
           "fork": 22,"image":"/static/temporary/showbg1.jpg"
         },
         {"info":"Spring 是一个轻量级的开发框架",
           "name":"Spring 5 核心原理解析",
-          "number": 999,"data":"2022-3-27",favorite: 999,level: 3,
+          "number": 999,"data":"2022-3-27",favorite: 999,
           "fork": 22,"image":"/static/temporary/showbg1.jpg"
         },
         {"info":"Spring 是一个轻量级的开发框架",
           "name":"Spring 5 核心原理解析",
-          "number": 999,"data":"2022-3-27",favorite: 999,level: 3,
+          "number": 999,"data":"2022-3-27",favorite: 999,
           "fork": 22,"image":"/static/temporary/showbg1.jpg"
         },
         {"info":"Spring 是一个轻量级的开发框架",
           "name":"Spring 5 核心原理解析",
-          "number": 999,"data":"2022-3-27",favorite: 999,level: 3,
+          "number": 999,"data":"2022-3-27",favorite: 999,
           "fork": 22,"image":"/static/temporary/showbg1.jpg"
         },
         {"info":"Spring 是一个轻量级的开发框架",
           "name":"Spring 5 核心原理解析",
-          "number": 999,"data":"2022-3-27",favorite: 999,level: 3,
+          "number": 999,"data":"2022-3-27",favorite: 999,
           "fork": 22,"image":"/static/temporary/showbg1.jpg"
         },
 
@@ -122,4 +124,11 @@ export default {
   text-overflow:ellipsis;
   white-space: nowrap;
 }
+
+.alink{
+
+  text-decoration: none;
+  color: #333333;
+}
+
 </style>

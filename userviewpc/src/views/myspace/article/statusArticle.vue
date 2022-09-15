@@ -40,8 +40,7 @@
               <i class="el-icon-coordinate"></i>
               {{message.level}}
               &nbsp;&nbsp;
-
-              <i v-if="message.level>=2">fork:{{message.fork}}</i>
+              fork:{{message.fork}}
             </p>
 
           </div>
@@ -93,12 +92,12 @@ export default {
       Messages:[
         {"info":"审核通过",
           "name":"Spring 5 核心原理解析",
-          "number": 2,"data":"2022-3-27",favorite: 0,level: 2,
+          "number": 2,"data":"2022-3-27",favorite: 0,
           "fork": 0
         },
         {"info":"审核未通过，改内容不适合公开发布",
           "name":"分分钟击穿校园网",
-          "number": 1,"data":"2022-3-27",favorite: 0,level: 3,
+          "number": 1,"data":"2022-3-27",favorite: 0,
           "fork": 0
         },
       ]

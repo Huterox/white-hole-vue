@@ -23,9 +23,11 @@
             <p style="font-weight: lighter;color: #3e71be" class="message"
 
             >
+              <el-link type="success">
               <router-link class="alink" to="/quiz/quizshow">
               {{message.type}}: &nbsp;{{message.info}}
               </router-link>
+              </el-link>
             </p>
             <p class="message">
               阅读：

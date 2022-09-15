@@ -23,7 +23,7 @@ import noticesettings from "../views/notices/noticesettings";
 import infoeditor from "../views/myspace/infoeditor"
 import countcontrol from "../views/myspace/countcontrol";
 import privateAarticle from "../views/myspace/article/privateAarticle";
-import publicArticle from "../views/myspace/article/publicArticle";
+import forkArticle from "../views/myspace/article/forkArticle";
 import allArticle from "../views/myspace/article/allArticle";
 import columnArticle from "../views/myspace/article/columnArticle";
 import statusArticle from "../views/myspace/article/statusArticle";
@@ -53,8 +53,8 @@ import baiDongZhi from "../views/treehole/baiDongZhi";
 import haoYouChat from "../views/treehole/haoYou/haoYouChat";
 import userinfo from "../views/userInfo/userinfo";
 import blogshowingme from "../views/blogs/blogshowingme";
-
-
+import blogshow from "../views/blogs/blogshow";
+import unityshow from "../views/community/communityshow/unityshow";
 Vue.use(Router)
 
 export default new Router({
@@ -62,7 +62,12 @@ export default new Router({
   //首页的都是大模块所以必须保持独立
   routes: [
 
-
+    {
+      path: '/blogshow',
+      name: 'blogshow',
+      component: blogshow
+    }
+,
     {
       path: '/',
       name: 'homepage',
@@ -169,8 +174,13 @@ export default new Router({
           path: "",
           name: "communitys",
           component: communitys
-        }
+        },
       ]
+    },
+    {
+      path: '/unityshow',
+      name: 'unityshow',
+      component: unityshow
     },
 
     {
@@ -224,9 +234,9 @@ export default new Router({
           component: privateAarticle,
         },
         {
-          path: 'publicArticle',
-          name: 'publicArticle',
-          component: publicArticle,
+          path: 'forkArticle',
+          name: 'forkArticle',
+          component: forkArticle,
         },
         {
           path: '',
@@ -360,10 +370,6 @@ export default new Router({
           name: 'blogshowingme',
           component: blogshowingme
         },
-
-
-
-
       ]
     },
 

@@ -57,7 +57,7 @@
           </template>
         </el-calendar>
         <br>
-        <i class="el-icon-bell">通告：</i>
+        <i class="el-icon-bell">活动：</i>
         <br><br>
         <div style="width: 95%">
 

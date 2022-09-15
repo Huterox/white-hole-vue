@@ -28,10 +28,15 @@
             <div style="margin-left: 2%">
                 <search-com></search-com>
             </div>
-            <router-link  to="/community">
-            </router-link>
 
             <br><br>
+            <div style="margin-left: 2%">
+              <el-breadcrumb separator-class="el-icon-arrow-right">
+                <el-breadcrumb-item :to="{ path: '/community' }">推荐</el-breadcrumb-item>
+                <el-breadcrumb-item ></el-breadcrumb-item>
+              </el-breadcrumb>
+
+            </div>
             <div style="width: 98%;margin: 0 auto">
               <router-view></router-view>
             </div>
@@ -46,29 +51,7 @@
           </div>
 
           <br>
-          <i class="el-icon-bell">活动：</i>
-          <br><br>
-          <div style="width: 95%">
 
-            <el-carousel indicator-position="outside">
-
-              <el-carousel-item v-for="item in ItemsNot" :key="item">
-                <div  style="width:100%;height: 80%;margin: 0 auto">
-                  <img
-                    style="width:100%;height: 150px;border-radius: 5px"
-                    v-bind:src="item.image"
-                    class="image"
-                  >
-                  <p class="message" style="font-weight: bold;font-size: 2px;text-align: center;
-                   width: 100%;
-                   margin: 0 auto
-                  ">
-                    {{item.info}}</p>
-                </div>
-
-              </el-carousel-item>
-            </el-carousel>
-          </div>
 
         </div>
 

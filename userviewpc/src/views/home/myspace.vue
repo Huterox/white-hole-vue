@@ -54,9 +54,9 @@
                 </el-menu-item>
               </router-link>
 
-              <router-link class="alink" to="/myspace/publicArticle">
+              <router-link class="alink" to="/myspace/forkArticle">
                 <el-menu-item index="2-2">
-                  PUBLIC
+                  Fork文章
                 </el-menu-item>
               </router-link>
 

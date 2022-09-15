@@ -37,12 +37,7 @@
               <i class="el-icon-star-off"></i>
               {{message.favorite}}
               &nbsp;&nbsp;
-              权限：
-              <i class="el-icon-coordinate"></i>
-              {{message.level}}
-              &nbsp;&nbsp;
-
-              <i v-if="message.level>=2">fork:{{message.fork}}</i>
+              fork:{{message.fork}}</i>
             </p>
 
           </div>
@@ -95,22 +90,22 @@ export default {
       Messages:[
         {"info":"Spring 是一个轻量级的开发框架",
           "name":"Spring 5 核心原理解析",
-          "number": 999,"data":"2022-3-27",favorite: 999,level: 0,
+          "number": 999,"data":"2022-3-27",favorite: 999,
           "fork": 2
         },
         {"info":"Spring 是一个轻量级的开发框架",
           "name":"Spring 5 核心原理解析",
-          "number": 999,"data":"2022-3-27",favorite: 999,level: 1,
+          "number": 999,"data":"2022-3-27",favorite: 999,
           "fork": 2
         },
         {"info":"Spring 是一个轻量级的开发框架",
           "name":"Spring 5 核心原理解析",
-          "number": 999,"data":"2022-3-27",favorite: 999,level: 2,
+          "number": 999,"data":"2022-3-27",favorite: 999,
           "fork": 2
         },
         {"info":"Spring 是一个轻量级的开发框架",
           "name":"Spring 5 核心原理解析",
-          "number": 999,"data":"2022-3-27",favorite: 999,level: 3,
+          "number": 999,"data":"2022-3-27",favorite: 999,
           "fork": 22
         },
 
