@@ -37,7 +37,7 @@
               <i class="el-icon-star-off"></i>
               {{message.favorite}}
               &nbsp;&nbsp;
-              fork:{{message.fork}}</i>
+              <i>fork:{{message.fork}}</i>
             </p>
 
           </div>

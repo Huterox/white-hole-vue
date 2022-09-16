@@ -3,7 +3,8 @@ import Router from 'vue-router'
 import treehole from "../views/home/treehole";
 import homepage from "../views/home/homepage";
 import quiz from "../views/home/quiz";
-import quizshow from "../views/quizshow/show"
+import quizshow from "../views/quizshow/quizshow"
+import anslist from "../views/quizshow/anslist";
 import community from "../views/home/community";
 import writeblog from "../views/home/writeblog";
 import othersSpace from "../views/home/otherSspace";
@@ -55,6 +56,7 @@ import userinfo from "../views/userInfo/userinfo";
 import blogshowingme from "../views/blogs/blogshowingme";
 import blogshow from "../views/blogs/blogshow";
 import unityshow from "../views/community/communityshow/unityshow";
+import ansshowinfo from "../views/quizshow/ansshowinfo";
 Vue.use(Router)
 
 export default new Router({
@@ -136,6 +138,7 @@ export default new Router({
       name: 'quiz',
       component: quiz,
       children:[
+
         {
           path: "",
           name: "quizHot",
@@ -159,7 +162,20 @@ export default new Router({
         {
           path: "quizshow",
           name: "quizshow",
-          component: quizshow
+          component: quizshow,
+          children: [
+            {
+              path: "",
+              name: "anlist",
+              component: anslist
+            },
+            {
+              path: "ansshowinfo",
+              name: "ansshowinfo",
+              component: ansshowinfo
+            }
+            ,
+          ]
 
         }
       ]
