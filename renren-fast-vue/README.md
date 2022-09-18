@@ -1,22 +1,45 @@
-### 为了项目的长远发展，renren-fast-vue已迁移到 【[renren-ui](https://gitee.com/renrenio/renren-ui)】里面，以后会在renren-ui里面进行更新维护，感谢支持！ :smiley: 
-<br> 
 
-## renren-fast-vue
-- renren-fast-vue基于vue、element-ui构建开发，实现[renren-fast](https://gitee.com/renrenio/renren-fast)后台管理前端功能，提供一套更优的前端解决方案
-- 前后端分离，通过token进行数据交互，可独立部署
-- 主题定制，通过scss变量统一一站式定制
-- 动态菜单，通过菜单管理统一管理访问路由
-- 数据切换，通过mock配置对接口数据／mock模拟数据进行切换
-- 发布时，可动态配置CDN静态资源／切换新旧版本
-- 演示地址：[http://demo.open.renren.io/renren-fast](http://demo.open.renren.io/renren-fast) (账号密码：admin/admin)
+# Actor
+A2051-侯乐勇-42
+## A2051
+## 侯乐勇
+## 42
 
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0305/133529_ff15f192_63154.png "01.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0305/133537_7a1b2d85_63154.png "02.png")
+# 后端项目地址
+[https://gitee.com/Huterox/white-hole-cloud](https://gitee.com/Huterox/white-hole-cloud)
+
+# whitehole
+
+> A Vue.js project
+
+## Build Setup
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
+```
+
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 
-## 说明文档
-项目开发、部署等说明都在[wiki](https://github.com/renrenio/renren-fast-vue/wiki)中。
+# 更细日志
+
+## v0.1
+完成项目的基本创建，搭建基本骨架
+## v0.13
+集成renren后台管理系统
+## v0.2
+根据最新需求，修改前端样式，并对已知的若干bug进行修复，由于距离第一次前端构建过久，团队（Huterox）花费了大量的时间重新梳理项目结构
 
 
-## 更新日志
-每个版本的详细更改都记录在[release notes](https://github.com/renrenio/renren-fast-vue/releases)中。
+## v0.21
+完成分布式后端管理接口整合（初步搭建）
