@@ -40,4 +40,6 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ## v0.2
 根据最新需求，修改前端样式，并对已知的若干bug进行修复，由于距离第一次前端构建过久，团队（Huterox）花费了大量的时间重新梳理项目结构
 
+## v0.21
 
+开始整合后端管理系统！！！
