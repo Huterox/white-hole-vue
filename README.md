@@ -41,5 +41,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 根据最新需求，修改前端样式，并对已知的若干bug进行修复，由于距离第一次前端构建过久，团队（Huterox）花费了大量的时间重新梳理项目结构
 
 ## v0.21
+完成分布式后端管理接口整合（初步搭建）
+
+## v0.22
 
 开始整合后端管理系统！！！
+
