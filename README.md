@@ -46,4 +46,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ## v0.22
 
 开始整合后端管理系统！！！
+## v0.23
+
+完成后台对用户的管理
 
