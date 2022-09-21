@@ -6,7 +6,7 @@
       </el-form-item>
       <el-form-item>
         <el-button @click="getDataList()">查询</el-button>
-        <el-button  type="primary" @click="addOrUpdateHandle()">新增</el-button>
+<!--        <el-button  type="primary" @click="addOrUpdateHandle()">新增</el-button>-->
         <el-button  type="danger" @click="deleteHandle()" :disabled="dataListSelections.length <= 0">批量删除</el-button>
       </el-form-item>
     </el-form>
@@ -23,92 +23,64 @@
         width="50">
       </el-table-column>
       <el-table-column
-        prop="username"
-        header-align="center"
-        align="center"
-        label="账号">
-      </el-table-column>
-<!--      <el-table-column-->
-<!--        prop="password"-->
-<!--        header-align="center"-->
-<!--        align="center"-->
-<!--        label="密码">-->
-<!--      </el-table-column>-->
-      <el-table-column
         prop="userid"
         header-align="center"
         align="center"
         label="用户id">
       </el-table-column>
       <el-table-column
-        prop="nickname"
+        prop="loginTime"
         header-align="center"
         align="center"
-        label="昵称">
+        label="登录时间">
       </el-table-column>
       <el-table-column
-        prop="age"
+        prop="outTime"
         header-align="center"
         align="center"
-        label="age">
+        label="退出时间">
       </el-table-column>
       <el-table-column
-        prop="phone"
+        prop="systemAction"
         header-align="center"
         align="center"
-        label="phone">
+        label="操作描述">
       </el-table-column>
       <el-table-column
-        prop="email"
+        prop="rechargeAction"
         header-align="center"
         align="center"
-        label="email">
-      </el-table-column>
-<!--      <el-table-column-->
-<!--        prop="describe"-->
-<!--        header-align="center"-->
-<!--        align="center"-->
-<!--        label="用户对自己的简介描述，相当于个性签名">-->
-<!--      </el-table-column>-->
-
-<!--      用户等级，1-普通用户 2-捐赠，高级用户-->
-      <el-table-column
-        prop="level"
-        header-align="center"
-        align="center"
-        label="等级">
+        label="支付记录">
       </el-table-column>
       <el-table-column
-        prop="holeValue"
+        prop="rechargeTime"
         header-align="center"
         align="center"
-        label="白洞值">
+        label="支付时间">
       </el-table-column>
-<!--      <el-table-column-->
-<!--        prop="home"-->
-<!--        header-align="center"-->
-<!--        align="center"-->
-<!--        label="用户地址">-->
-<!--      </el-table-column>-->
-<!--      "用户状态，1-正常 2-警告 3-封禁"-->
       <el-table-column
-        prop="status"
+        prop="warnAction"
         header-align="center"
         align="center"
-        label="状态"
-      >
+        label="非法操作">
       </el-table-column>
-<!--      <el-table-column-->
-<!--        prop="tokenThere"-->
-<!--        header-align="center"-->
-<!--        align="center"-->
-<!--        label="如果用户选择第三方登录，那么会将第三方的token保存到数据当中，然后自动创建userid,其余信息需要用户自己填写">-->
-<!--      </el-table-column>-->
       <el-table-column
-        prop="creatTime"
+        prop="warnTime"
         header-align="center"
         align="center"
-        label="加入时间">
+        label="警告时间">
+      </el-table-column>
+      <el-table-column
+        prop="errorAction"
+        header-align="center"
+        align="center"
+        label="系统错误">
+      </el-table-column>
+      <el-table-column
+        prop="errorTime"
+        header-align="center"
+        align="center"
+        label="错误时间">
       </el-table-column>
       <el-table-column
         fixed="right"
@@ -117,7 +89,7 @@
         width="150"
         label="操作">
         <template slot-scope="scope">
-          <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.userid)">修改</el-button>
+<!--          <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.userid)">修改</el-button>-->
           <el-button type="text" size="small" @click="deleteHandle(scope.row.userid)">删除</el-button>
         </template>
       </el-table-column>
@@ -137,7 +109,7 @@
 </template>
 
 <script>
-import AddOrUpdate from './user-add-or-update'
+import AddOrUpdate from './logbase-add-or-update'
 export default {
   data () {
     return {
@@ -164,7 +136,7 @@ export default {
     getDataList () {
       this.dataListLoading = true
       this.$http({
-        url: this.$http.adornUrl('/user/user/user/list'),
+        url: this.$http.adornUrl('/user/user/logbase/list'),
         method: 'get',
         params: this.$http.adornParams({
           'page': this.pageIndex,
@@ -215,7 +187,7 @@ export default {
         type: 'warning'
       }).then(() => {
         this.$http({
-          url: this.$http.adornUrl('/user/user/user/delete'),
+          url: this.$http.adornUrl('/user/user/logbase/delete'),
           method: 'post',
           data: this.$http.adornData(ids, false)
         }).then(({data}) => {

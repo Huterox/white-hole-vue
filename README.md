@@ -50,3 +50,5 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 完成后台对用户的管理
 
+## v0.24
+完成后台管理系统的用户管理部分，完成初步的前后端整合

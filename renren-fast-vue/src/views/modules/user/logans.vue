@@ -6,7 +6,7 @@
       </el-form-item>
       <el-form-item>
         <el-button @click="getDataList()">查询</el-button>
-        <el-button  type="primary" @click="addOrUpdateHandle()">新增</el-button>
+<!--        <el-button v-if="isAuth('user:logans:save')" type="primary" @click="addOrUpdateHandle()">新增</el-button>-->
         <el-button  type="danger" @click="deleteHandle()" :disabled="dataListSelections.length <= 0">批量删除</el-button>
       </el-form-item>
     </el-form>
@@ -23,92 +23,42 @@
         width="50">
       </el-table-column>
       <el-table-column
-        prop="username"
-        header-align="center"
-        align="center"
-        label="账号">
-      </el-table-column>
-<!--      <el-table-column-->
-<!--        prop="password"-->
-<!--        header-align="center"-->
-<!--        align="center"-->
-<!--        label="密码">-->
-<!--      </el-table-column>-->
-      <el-table-column
         prop="userid"
         header-align="center"
         align="center"
         label="用户id">
       </el-table-column>
       <el-table-column
-        prop="nickname"
+        prop="ansid"
         header-align="center"
         align="center"
-        label="昵称">
+        label="回答id">
       </el-table-column>
       <el-table-column
-        prop="age"
+        prop="quizid"
         header-align="center"
         align="center"
-        label="age">
+        label="提问id">
       </el-table-column>
       <el-table-column
-        prop="phone"
+        prop="quizTitle"
         header-align="center"
         align="center"
-        label="phone">
+        label="提问标题">
       </el-table-column>
-      <el-table-column
-        prop="email"
-        header-align="center"
-        align="center"
-        label="email">
-      </el-table-column>
-<!--      <el-table-column-->
-<!--        prop="describe"-->
-<!--        header-align="center"-->
-<!--        align="center"-->
-<!--        label="用户对自己的简介描述，相当于个性签名">-->
-<!--      </el-table-column>-->
-
-<!--      用户等级，1-普通用户 2-捐赠，高级用户-->
-      <el-table-column
-        prop="level"
-        header-align="center"
-        align="center"
-        label="等级">
-      </el-table-column>
-      <el-table-column
-        prop="holeValue"
-        header-align="center"
-        align="center"
-        label="白洞值">
-      </el-table-column>
-<!--      <el-table-column-->
-<!--        prop="home"-->
-<!--        header-align="center"-->
-<!--        align="center"-->
-<!--        label="用户地址">-->
-<!--      </el-table-column>-->
-<!--      "用户状态，1-正常 2-警告 3-封禁"-->
-      <el-table-column
-        prop="status"
-        header-align="center"
-        align="center"
-        label="状态"
-      >
-      </el-table-column>
-<!--      <el-table-column-->
-<!--        prop="tokenThere"-->
-<!--        header-align="center"-->
-<!--        align="center"-->
-<!--        label="如果用户选择第三方登录，那么会将第三方的token保存到数据当中，然后自动创建userid,其余信息需要用户自己填写">-->
-<!--      </el-table-column>-->
       <el-table-column
         prop="creatTime"
         header-align="center"
         align="center"
-        label="加入时间">
+        label="创建时间">
+      </el-table-column>
+
+      <!--  1-回答 2-回答删除 3-回答修改-->
+      <el-table-column
+        prop="action"
+        header-align="center"
+        align="center"
+        label="行为">
       </el-table-column>
       <el-table-column
         fixed="right"
@@ -132,12 +82,12 @@
       layout="total, sizes, prev, pager, next, jumper">
     </el-pagination>
     <!-- 弹窗, 新增 / 修改 -->
-    <add-or-update v-if="addOrUpdateVisible" ref="addOrUpdate" @refreshDataList="getDataList"></add-or-update>
+<!--    <add-or-update v-if="addOrUpdateVisible" ref="addOrUpdate" @refreshDataList="getDataList"></add-or-update>-->
   </div>
 </template>
 
 <script>
-import AddOrUpdate from './user-add-or-update'
+import AddOrUpdate from './logans-add-or-update'
 export default {
   data () {
     return {
@@ -164,7 +114,7 @@ export default {
     getDataList () {
       this.dataListLoading = true
       this.$http({
-        url: this.$http.adornUrl('/user/user/user/list'),
+        url: this.$http.adornUrl('/user/user/logans/list'),
         method: 'get',
         params: this.$http.adornParams({
           'page': this.pageIndex,
@@ -215,7 +165,7 @@ export default {
         type: 'warning'
       }).then(() => {
         this.$http({
-          url: this.$http.adornUrl('/user/user/user/delete'),
+          url: this.$http.adornUrl('/user/user/logans/delete'),
           method: 'post',
           data: this.$http.adornData(ids, false)
         }).then(({data}) => {
