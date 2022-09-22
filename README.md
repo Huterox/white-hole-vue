@@ -52,3 +52,6 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## v0.24
 完成后台管理系统的用户管理部分，完成初步的前后端整合
+
+## v0.25
+完成基本的后台管理功能搭建，由于目前服务为搭建完成，所以很多接口，页面并未实现
