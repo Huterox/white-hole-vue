@@ -10,10 +10,14 @@ Vue.use(ElementUI);
 //使用编辑器Markdown
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
+import global from "./global/global";
+import axios from "axios";
+
 // use
 Vue.use(mavonEditor)
 
 Vue.config.productionTip = false
+Vue.prototype.axios = axios
 
 import infiniteScroll from 'vue-infinite-scroll'
 //使用无限加载
@@ -24,7 +28,9 @@ import Chat from 'jwchat';
 // import 'jwchat/lib/JwChat.css';
 Vue.use(Chat)
 
-
+//挂载全局变量
+Vue.prototype.global = global;
+axios.defaults.baseURL = global.baseURL;
 
 /* eslint-disable no-new */
 new Vue({

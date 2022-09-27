@@ -31,8 +31,9 @@
                label-width="100px"
                class="demo-ruleForm">
 
-        <el-form-item label="文章封面URL" >
-          <el-input v-model="ruleForm.url"></el-input>
+        <el-form-item label="文章封面" >
+<!--          <el-input v-model="ruleForm.url"></el-input>-->
+          <signle-upload v-model="ruleForm.url"></signle-upload>
         </el-form-item>
 
         <el-form-item label="选择社区" prop="community">
@@ -85,6 +86,7 @@
 </template>
 
 <script>
+import signleUpload from "../../components/upload/signleUpload";
 import { mavonEditor } from 'mavon-editor'     //引入mavon-editor组件
 import 'mavon-editor/dist/css/index.css'       //引入组件的样式
 export default {
@@ -92,6 +94,7 @@ export default {
   name: "writeblog",
   components: {
     mavonEditor,
+    signleUpload,
   },
 
   data() {
