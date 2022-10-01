@@ -113,10 +113,10 @@ export default {
     load () {
       //这部分让你的axios去动态加载
       let temp=[
-        // {
-        //   content: 'WhiteHoleV0.7设计初稿',
-        //   data: '2022-03-27',
-        // }
+        {
+          content: 'WhiteHoleV0.7设计初稿',
+          data: '2022-03-27',
+        }
       ]
       for (let i = 0; i < temp.length; i++) {
         this.Message.push(temp[i])

@@ -53,9 +53,7 @@
         <el-form-item label="选择权限" prop="level">
           <el-select v-model="ruleForm.level" placeholder="请选择文章权限">
             <el-option label="私密" value="0"></el-option>
-            <el-option label="公开阅览" value="1"></el-option>
-            <el-option label="公开读写权限" value="2"></el-option>
-            <el-option label="完全公开(所有人持有)" value="3"></el-option>
+            <el-option label="公开" value="1"></el-option>
           </el-select>
         </el-form-item>
 

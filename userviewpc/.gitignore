@@ -1,14 +1,23 @@
-.DS_Store
-node_modules/
-/dist/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# This file is automatically added by @npmcli/template-oss. Do not edit.
 
-# Editor directories and files
-.idea
-.vscode
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
+# ignore everything in the root
+/*
+
+# keep these
+!/.commitlintrc.js
+!/.npmrc
+!/.eslintrc*
+!/.github
+!**/.gitignore
+!/package.json
+!/docs
+!/bin
+!/lib
+!/map.js
+!/tap-snapshots
+!/test
+!/scripts
+!/README*
+!/LICENSE*
+!/SECURITY*
+!/CHANGELOG*

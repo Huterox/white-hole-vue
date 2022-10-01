@@ -1,5 +1,5 @@
 <template>
-<div style="height: 960px;width: 80%;margin: 0 auto">
+<div style="width: 85%;margin: 0 auto">
     <br><br><br>
     <div>
       <div class="show">
@@ -63,13 +63,26 @@
         {{Messages.favorite}}
 
 
-          <el-button type="primary" round style="width: 20%;margin-left: 50px;display: inline-block">
+          <el-button type="primary" round style="width: 20%;margin-left: 50px;display: inline-block"
+                     @click="dialogVisible = true"
+          >
             回答<i class="el-icon-edit-outline"></i>
           </el-button>
           <br><br>
 
 
       </div>
+
+      <el-dialog
+        title="编辑回答"
+        :visible.sync="dialogVisible"
+        width="80%"
+        center
+      >
+        <writequiz></writequiz>
+        <span slot="footer" class="dialog-footer">
+         </span>
+      </el-dialog>
 
 
       <router-link to="/quiz/quizshow"></router-link>
@@ -83,11 +96,15 @@
 </template>
 
 <script>
-
+import writequiz from "./writequiz";
 export default {
   name: "show",
+  components:{
+    writequiz
+  },
   data(){
     return{
+      dialogVisible:false,
 
       Messages:
         {"info":"Spring 是一个轻量级的开发框架",
@@ -97,7 +114,7 @@ export default {
         },
 
     }
-  }
+  },
 }
 </script>
 
@@ -120,7 +137,8 @@ export default {
 
 }
 .show:hover{
-  box-shadow: 0px 5px 15px rgba(83, 194, 199, 0.4);
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.4);
+  margin-top: 15px;
 
 }
 </style>

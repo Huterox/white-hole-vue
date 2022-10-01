@@ -2,12 +2,22 @@
   "name": "whitehole",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "Huterox <3139541502@qq.com>",
+  "author": "GitHub Inc.",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "lint": "eslint '**/*.js'",
+    "postlint": "npm-template-check",
+    "template-copy": "npm-template-copy --force",
+    "lintfix": "npm run lint -- --fix",
+    "preversion": "npm test",
+    "postversion": "npm publish",
+    "prepublishOnly": "git push origin --follow-tags",
+    "snap": "tap",
+    "test": "tap",
+    "posttest": "npm run lint"
   },
   "dependencies": {
     "axios": "^0.26.1",
@@ -17,6 +27,8 @@
     "node-sass": "^7.0.1",
     "sass-loader": "^12.6.0",
     "vue": "^2.5.2",
+    "stylus-loader": "^3.0.1",
+    "stylus": "0.52.4",
     "vue-infinite-scroll": "^2.0.2",
     "vue-mchat": "^1.2.0",
     "vue-router": "^3.0.1"
@@ -53,6 +65,7 @@
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
     "vue-loader": "^13.3.0",
+    "vue-particles": "^1.0.9",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
     "webpack": "^3.6.0",
@@ -61,12 +74,18 @@
     "webpack-merge": "^4.1.0"
   },
   "engines": {
-    "node": ">= 6.0.0",
-    "npm": ">= 3.0.0"
+    "node": "^12.13.0 || ^14.15.0 || >=16"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "files": [
+    "bin",
+    "lib"
+  ],
+  "templateOSS": {
+    "version": "2.9.2"
+  }
 }

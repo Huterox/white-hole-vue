@@ -12,7 +12,9 @@ import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import global from "./global/global";
 import axios from "axios";
-
+//引入特效组
+import VueParticles from 'vue-particles'
+Vue.use(VueParticles)
 // use
 Vue.use(mavonEditor)
 

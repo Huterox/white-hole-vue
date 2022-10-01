@@ -71,7 +71,8 @@
                class="demo-ruleForm">
 
         <el-form-item label="社区封面" prop="url">
-          <el-input placeholder="请输入封面URL" v-model="ruleForm.url"></el-input>
+          <signle-upload v-model="ruleForm.url"></signle-upload>
+<!--          <el-input placeholder="请输入封面URL" v-model="ruleForm.url"></el-input>-->
         </el-form-item>
         <el-form-item label="社区名称" prop="name" >
           <el-input v-model="ruleForm.name"></el-input>
@@ -94,9 +95,13 @@
 
 <script>
 import SearchCom from "../../components/search/SearchCom";
+import signleUpload from "../../components/upload/signleUpload";
 export default {
   name: "community",
-  components: {SearchCom},
+  components: {
+    SearchCom,
+    signleUpload,
+  },
   data(){
     return{
 
@@ -114,9 +119,9 @@ export default {
           { min: 10, max: 150, message: '长度在 10 到 150 个字符', trigger: 'blur' }
         ],
 
-        url: [
-          { required: true, message: '请输入社区封面URL', trigger: 'blur' },
-        ],
+        // url: [
+        //   { required: true, message: '请输入社区封面URL', trigger: 'blur' },
+        // ],
         name: [
           { required: true, message: '请输入社区名称', trigger: 'blur' },
         ],
