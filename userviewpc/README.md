@@ -43,3 +43,6 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## v0.21
 完成问答详情页面的编写
+
+## v0.3
+完成全部页面的大体编写

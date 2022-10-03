@@ -53,9 +53,13 @@
           <template
             slot="dateCell"
             slot-scope="{date, data}">
-            <p :class="data.isSelected ? 'is-selected' : ''">
-              {{ data.day.split('-').slice(2).join('-') }} {{ data.isSelected ? '✔️' : ''}}
-            </p>
+            <div :class="data.isSelected ? 'is-selected' : ''">
+              {{ data.day.split('-').slice(2).join('-') }}
+              <p v-if="getDay===data.day">
+                {{'✔️'}}
+              </p>
+              {{ data.isSelected ? '✔️' : ''}}
+            </div>
           </template>
         </el-calendar>
         <br>
@@ -92,6 +96,15 @@
 <script>
 export default {
   name: "homepage",
+  computed:{
+    getDay(){
+      let dt = new Date();
+      let year = dt.getFullYear();
+      let month = (dt.getMonth() + 1).toString().padStart(2,'0');
+      let date = dt.getDate().toString().padStart(2,'0');
+      return `${year}-${month}-${date}`;
+    }
+  },
   data(){
     return{
       Items: [

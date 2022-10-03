@@ -1,0 +1,124 @@
+
+<template>
+  <div style="background-color: rgba(239,250,246,0.53)">
+
+    <br>
+    <div style="width: 80%;margin-left: 1%" class="main">
+      <el-form :inline="true">
+        <el-form-item >
+          <el-input style="width: 300px" placeholder="请输入用户昵称" clearable></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button >查询</el-button>
+        </el-form-item>
+      </el-form>
+
+      <el-card shadow="hover" v-for="(message,index) in Messages" :key="index">
+
+        <div style="height:100px">
+          <div  style="width:14%;height: 100%;border-radius: 100px;display:inline-block;">
+            <img
+              style="width:100%;height: 100%;border-radius: 100px"
+              src="/static/temporary/headpic.jpg"
+              class="image"
+            >
+          </div>
+          <div style="display:inline-block;margin-left: 5%;width: 60%">
+            <p class="message" style="font-weight:bold">
+
+              <router-link class="alink" to="/userinfo">
+                {{message.nickname}}
+              </router-link>
+
+            </p>
+            <p style="font-weight: lighter" class="message"
+
+            >
+              {{message.info}}
+
+            </p>
+
+
+          </div>
+
+          <div  style="width:18%;height: 100%;
+          display:inline-block;
+          "
+          >
+            <div style="display: inline-block;width: 50%;">
+              <el-tooltip content="将用户移除社区" placement="bottom" effect="light">
+                <el-button type="warning" round style="height: 50%;width: 100%;display: inline-block">
+                  <i class="el-icon-right"></i>
+                </el-button>
+              </el-tooltip>
+              <br><br>
+            </div>
+            <br><br>
+          </div>
+
+        </div>
+        <br>
+      </el-card>
+    </div>
+    <br>
+    <div class="footer" style="margin: 0 auto;width: 100%;">
+      <div class="block" >
+        <el-pagination
+          background
+          layout="total, prev, pager, next, jumper"
+          :total=total>
+        </el-pagination>
+      </div>
+    </div>
+
+  </div>
+
+</template>
+
+<script>
+export default {
+  name: "unityUserList",
+  data(){
+    return{
+      total: 999,
+      Messages:[
+        { "info":"这个人很懒啥都没说",
+          "nickname":"Huterox",
+          "data":"2022-3-27"
+        },
+
+        { "info":"这个人很懒啥都没说",
+          "nickname":"Duterox",
+          "data":"2022-3-27"
+        },
+
+        { "info":"这个人很懒啥都没说",
+          "nickname":"Cuterox",
+          "data":"2022-3-27"
+        },
+        { "info":"这个人很懒啥都没说",
+          "nickname":"Euterox",
+          "data":"2022-3-27"
+        },
+
+
+      ]
+    }
+  },
+}
+</script>
+
+<style scoped>
+.message{
+  width: 25em;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.alink{
+
+  text-decoration: none;
+  color: #333333;
+}
+
+</style>
