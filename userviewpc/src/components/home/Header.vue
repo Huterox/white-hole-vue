@@ -1,7 +1,7 @@
 <template>
 <div>
   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-    <el-menu-item style="margin-left: 20%" index="1">
+    <el-menu-item style="margin-left: 10%" index="1">
       <router-link to="/">
 <!--      首页内容-->
         <i class="el-icon-s-home"></i>
@@ -24,7 +24,7 @@
         社区
       </router-link>
     </el-menu-item>
-    <el-menu-item style="margin-left:100px">
+    <el-menu-item style="margin-left:10px;width: 36%">
       <Search></Search>
     </el-menu-item>
 
@@ -46,9 +46,30 @@
 
 
     <el-menu-item index="7">
-      <router-link to="myspace">
-        <el-button round ><i class="el-icon-user-solid" ></i>Me</el-button>
-      </router-link>
+      <el-dropdown>
+        <span class="el-dropdown-link">
+           <el-avatar
+             :size="50"
+             src="static/image/space3.jpg">
+           </el-avatar>
+          <span style="font-size: large;color: #8c939d">Space</span>
+        </span>
+              <el-dropdown-menu slot="dropdown">
+                <br>
+                <el-dropdown-item >
+                  <router-link to="/userinfo">
+                    <el-button style="width: 100%" type="primary" plain>我的主页</el-button>
+                  </router-link>
+                </el-dropdown-item>
+                <br>
+                <el-dropdown-item>
+                  <router-link to="myspace">
+                    <el-button style="width: 100%" type="primary" plain>个人中心</el-button>
+                  </router-link>
+                </el-dropdown-item>
+              </el-dropdown-menu>
+      </el-dropdown>
+
     </el-menu-item>
 
 

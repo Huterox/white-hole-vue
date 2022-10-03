@@ -3,8 +3,12 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-
+// const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 module.exports = {
+
+  // plugins: [
+  //   new MonacoWebpackPlugin()
+  // ],
   dev: {
 
     // Paths

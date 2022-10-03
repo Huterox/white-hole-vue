@@ -1,5 +1,10 @@
 <template>
   <div style="background-color: rgba(239,250,246,0.53)">
+    <div class="head" style="width: 90%;margin: 0 auto">
+
+      <el-button style="margin-left:74%" type="primary" plain @click="submit">创建专栏</el-button>
+
+    </div>
     <br>
 
     <br>
@@ -17,7 +22,7 @@
           </div>
           <div style="display:inline-block;margin-left: 5%;width: 60%">
             <p class="message" style="font-weight:bold">
-              <router-link class="alink" to="/blogshowingme">
+              <router-link class="alink" to="/myspace/columArticleList">
                 {{message.name}}
               </router-link>
             </p>
@@ -45,16 +50,78 @@
       </div>
     </div>
 
+
+    <el-dialog
+      style="width:80%;margin: 0 auto"
+      title="创建申请"
+      :visible.sync="dialogFormVisible"
+    >
+
+      <el-form :model="ruleForm"
+               :rules="rules"
+               ref="ruleForm"
+               label-width="100px"
+               class="demo-ruleForm">
+
+        <el-form-item label="专栏封面" prop="url">
+          <signle-upload v-model="ruleForm.url"></signle-upload>
+          <!--          <el-input placeholder="请输入封面URL" v-model="ruleForm.url"></el-input>-->
+        </el-form-item>
+        <el-form-item label="专栏名称" prop="name" >
+          <el-input v-model="ruleForm.name"></el-input>
+        </el-form-item>
+
+        <el-form-item label="专栏描述" prop="desc">
+          <el-input type="textarea" v-model="ruleForm.desc"></el-input>
+        </el-form-item>
+      </el-form>
+
+      <div  style="margin: 0 auto" slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="submitForm('ruleForm')">确 定</el-button>
+      </div>
+
+    </el-dialog>
+
+
   </div>
 
 </template>
 
 <script>
+import signleUpload from "../../../components/upload/signleUpload";
+import SearchCom from "../../../components/search/SearchCom";
 export default {
   name: "columnArticle",
+  components: {
+    signleUpload,
+  },
   data(){
     return{
+      dialogFormVisible: false,
       total: 4,
+      ruleForm: {
+        url: '',
+        name: '',
+        desc: '',
+
+      },
+
+      rules: {
+        desc: [
+          { required: true, message: '请输入社区描述', trigger: 'blur' },
+          { min: 10, max: 150, message: '长度在 10 到 150 个字符', trigger: 'blur' }
+        ],
+
+        // url: [
+        //   { required: true, message: '请输入社区封面URL', trigger: 'blur' },
+        // ],
+        name: [
+          { required: true, message: '请输入社区名称', trigger: 'blur' },
+        ],
+
+
+      },
       Messages:[
         {"name":"Java学习",
           "info":"每天记录Java的学习点滴",
@@ -74,6 +141,33 @@ export default {
 
       ]
     }
+  },
+
+  methods: {
+
+    // 提交
+    submit(){
+
+      this.dialogFormVisible=true;
+    },
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          if (this.ruleForm.name===""){
+            alert("社区名称不能为空")
+            return
+          }
+          alert('submit!');
+          this.dialogFormVisible = false;
+          console.log(this.ruleForm)
+        } else {
+
+          console.log('error submit!!');
+          return false;
+        }
+      });
+    },
+
   },
 }
 </script>

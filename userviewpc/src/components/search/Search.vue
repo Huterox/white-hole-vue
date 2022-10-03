@@ -1,7 +1,7 @@
 <template>
   <div>
   <el-autocomplete
-      style="width: 80%"
+      style="width: 90%"
       popper-class="my-autocomplete"
       v-model="state"
       :fetch-suggestions="querySearch"
@@ -46,10 +46,9 @@ export default {
     loadAll() {
       //可以在这里发送axios请求
       return [
-        { "value": "手写Spring三大组件", "address": "jvm深入解析" },
-        { "value": "热门问答", "address": "大学女朋友该不该谈" },
-        { "value": "Python", "address": "用flask还是Django部署pytorch" },
-        { "value": "如何判断女孩喜不喜欢你", "address": "忽远忽近女孩总是不回你信息" },
+        { "value": "手写Spring三大组件", },
+        { "value": "Python",},
+        { "value": "还没女朋友？我用Transform搭建属于我的AI女友",},
 
       ];
     },

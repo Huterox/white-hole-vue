@@ -35,7 +35,7 @@
 
             <div style="display: inline-block;width: 70%;height: 100%">
 
-              <el-button type="primary" round style="height: 50%;width: 100%;display: inline-block">
+              <el-button type="primary" round style="height: 50%;width: 100%;display: inline-block" @click="goto">
                 <i class="el-icon-s-tools">管理</i>
 
               </el-button>
@@ -76,6 +76,11 @@ export default {
 
         },
       ]
+    }
+  },
+  methods:{
+    goto(){
+      this.$router.push({ path: '/manageunity', query: { id: '1'} });
     }
   },
 }

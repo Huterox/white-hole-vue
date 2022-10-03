@@ -57,6 +57,22 @@ import blogshowingme from "../views/blogs/blogshowingme";
 import blogshow from "../views/blogs/blogshow";
 import unityshow from "../views/community/communityshow/unityshow";
 import ansshowinfo from "../views/quizshow/ansshowinfo";
+import blogshowMerge from "../views/blogs/blogshowMerge";
+import unityBlogList from "../views/community/communityshow/unityBlogList";
+import unityQuizList from "../views/community/communityshow/unityQuizList";
+import userblogList from "../views/userInfo/showlist/userblogList";
+import useransList from "../views/userInfo/showlist/useransList";
+import userquizList from "../views/userInfo/showlist/userquizList";
+import userunityList from "../views/userInfo/showlist/userunityList";
+import manageunity from "../views/myspace/manageunity/manageunity";
+import columArticleList from "../views/myspace/article/columArticleList";
+import unityArticleJoinList from "../views/myspace/manageunity/unityArticleJoinList";
+import unityArticleList from "../views/myspace/manageunity/unityArticleList";
+import unityQuizJoinList from "../views/myspace/manageunity/unityQuizJoinList";
+import unityUserList from "../views/myspace/manageunity/unityUserList";
+import unityUserJoinList from "../views/myspace/manageunity/unityUserJoinList";
+import unityQuizAllList from "../views/myspace/manageunity/unityQuizAllList";
+import unityQuizAnsJoinList from "../views/myspace/manageunity/unityQuizAnsJoinList";
 Vue.use(Router)
 
 export default new Router({
@@ -65,9 +81,58 @@ export default new Router({
   routes: [
 
     {
+      path:"/manageunity",
+      name:"manageunity",
+      component: manageunity,
+      children:[
+        {
+          path: "",
+          name: "unityArticleList",
+          component: unityArticleList
+        },
+        {
+          path: "unityArticleJoinList",
+          name: "unityArticleJoinList",
+          component: unityArticleJoinList
+        },
+        {
+          path: "unityQuizAllList",
+          name: "unityQuizAllList",
+          component: unityQuizAllList
+        },
+        {
+          path: "unityQuizJoinList",
+          name: "unityQuizJoinList",
+          component: unityQuizJoinList
+        },
+        {
+          path: "unityUserList",
+          name: "unityUserList",
+          component: unityUserList
+        },
+        {
+          path: "unityUserJoinList",
+          name: "unityUserJoinList",
+          component: unityUserJoinList
+        },
+        {
+          path: "unityQuizAnsJoinList",
+          name: "unityQuizAnsJoinList",
+          component: unityQuizAnsJoinList,
+        }
+      ]
+
+    },
+
+    {
       path: '/blogshow',
       name: 'blogshow',
       component: blogshow
+    },
+    {
+      path: '/blogshowMerge',
+      name: 'blogshowMerge',
+      component: blogshowMerge,
     }
 ,
     {
@@ -196,7 +261,19 @@ export default new Router({
     {
       path: '/unityshow',
       name: 'unityshow',
-      component: unityshow
+      component: unityshow,
+      children:[
+        {
+          path: "",
+          name: "unityBlogList",
+          component: unityBlogList
+        },
+        {
+          path: "unityQuizList",
+          name: "unityQuizList",
+          component: unityQuizList
+        }
+      ]
     },
 
     {
@@ -215,7 +292,29 @@ export default new Router({
 
       path: "/userinfo",
       name: userinfo,
-      component: userinfo
+      component: userinfo,
+      children:[
+        {
+          path: "",
+          name: "userblogList",
+          component: userblogList,
+        },
+        {
+          path: "useransList",
+          name: "useransList",
+          component: useransList,
+        },
+        {
+          path: "userquizList",
+          name: "userquizList",
+          component: userquizList,
+        },
+        {
+          path: "userunityList",
+          name: "userunityList",
+          component: userunityList,
+        }
+      ]
 
     },
 
@@ -278,6 +377,11 @@ export default new Router({
           path: 'myjoincolums',
           name: myjoincolums,
           component: myjoincolums
+        },
+        {
+          path: "columArticleList",
+          name: "columArticleList",
+          component: columArticleList,
         },
         {
           path: 'collectionAns',

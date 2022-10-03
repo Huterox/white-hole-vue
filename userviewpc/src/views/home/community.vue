@@ -47,7 +47,18 @@
         <div class="grid-content bg-purple" >
           <br><br><br>
           <div style="margin-left: 35%;width: 80px;height: 80px">
-            <el-button style="width: 100%;height: 100%" @click="submit" type="primary" icon="el-icon-top" circle>创建</el-button>
+            <el-tooltip
+            placement="bottom" effect="light">
+            <div slot="content">
+              创建社区后，您将获得社区管理权限，将负责审核社区成员所发布的文章与问答。<br>
+              WhiteHole将不会对您的社区内容进行监管，但如果社区内容被举报并核实，我们<br>
+              将采取一定的惩罚措施！请您切勿维护社区内正常友好的交流环境。承担管理职责！
+            </div>
+            <el-button style="width: 100%;height: 100%" @click="submit" type="primary" icon="el-icon-top" circle>
+              创建
+            </el-button>
+            </el-tooltip>
+
           </div>
 
           <br>

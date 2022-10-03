@@ -1,5 +1,7 @@
 <template>
-<div style="height: 960px;width: 80%;margin: 0 auto">
+<div
+  style="width: 80%;margin: 0 auto;"
+>
   <el-row :gutter="22">
     <el-col :span="16">
       <div class="grid-content bg-purple">

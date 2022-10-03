@@ -22,40 +22,42 @@
       <br>
 <!--    这个是我们的回答的具体内容-->
       <div>
-      <p style="font-family: cursive">
-      这部分主要是这样的。
+        <div style="width: 96%;margin: 0 auto">
+          <p style="font-family: cursive">
+          这部分主要是这样的。
 
-      首先咱们还是已经知道了，咱们有96个边框，并且我们知道了每一个cell 不同类别的条件概率。
+          首先咱们还是已经知道了，咱们有96个边框，并且我们知道了每一个cell 不同类别的条件概率。
 
-      例如我们预测上面的那个小姐姐。我这里以三个类别举个例子。
-      那么按照咱们的假设就是输出 7 x 7 x 13 的样子。
+          例如我们预测上面的那个小姐姐。我这里以三个类别举个例子。
+          那么按照咱们的假设就是输出 7 x 7 x 13 的样子。
 
-      那么我们怎么处理呢，首先是先对这个边框 bounding box
-    </p></div>
+          那么我们怎么处理呢，首先是先对这个边框 bounding box
+        </p>
+        </div>
+      </div>
   </div>
 
-  <div >
-    阅读:
-    <i class="el-icon-view"></i>
-    {{Messages.number}}
-    &nbsp;&nbsp;
-    收藏:
-    <i class="el-icon-star-off"></i>
-    {{Messages.collect}}
-    &nbsp;
-    点赞:
-    <i class="el-icon-check"></i>
-    {{Messages.favorite}}
+  <div>
+    <div style="width: 96%;margin: 0 auto">
+      阅读:
+      <i class="el-icon-view"></i>
+      {{Messages.number}}
+      &nbsp;&nbsp;
+      收藏:
+      <i class="el-icon-star-off"></i>
+      {{Messages.collect}}
+      &nbsp;
+      点赞:
+      <i class="el-icon-check"></i>
+      {{Messages.favorite}}
 
-    <br><br>
-
-
+      <br><br>
+    </div>
   </div>
   <br><br>
-  <div style="border-radius: 10px;border: 1px solid #81badc;">
+  <div class="show">
     <comment_ans></comment_ans>
   </div>
-
 </div>
 </template>
 
@@ -86,7 +88,7 @@ export default {
   margin: 20px auto;
   width: 100%;
 
-  border: 2px solid #81badc;
+  border: 0px solid #81badc;
   transition: all 0.9s;
   border-radius: 10px;
 

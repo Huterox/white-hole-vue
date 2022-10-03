@@ -131,13 +131,13 @@
 
               <router-link class="alink" to="/myspace/myjoincolums">
                 <el-menu-item index="5-1">
-                  我的社区
+                  已经加入
                 </el-menu-item>
               </router-link>
 
               <router-link class="alink" to="/myspace/mycolums">
                 <el-menu-item index="5-2">
-                  我创建的社区
+                  社区管理
                 </el-menu-item>
               </router-link>
 

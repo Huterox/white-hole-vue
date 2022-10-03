@@ -1,3 +1,4 @@
+
 <template>
   <div style="background-color: rgba(239,250,246,0.53)">
     <br>
@@ -26,6 +27,21 @@
 
           </div>
 
+
+          <div  style="width:18%;height: 100%;
+          display:inline-block;
+          "
+          >
+
+            <div style="display: inline-block;width: 70%;height: 100%">
+
+              <el-button type="primary" round style="height: 50%;width: 100%;display: inline-block">
+                <i class="el-icon-remove">退出</i>
+
+              </el-button>
+              <br><br><br>
+            </div>
+          </div>
         </div>
         <br>
       </el-card>
@@ -45,6 +61,7 @@
 
 </template>
 
+
 <script>
 export default {
   name: "myjoincolums",
@@ -62,6 +79,7 @@ export default {
       ]
     }
   },
+
 }
 </script>
 
