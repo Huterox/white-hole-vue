@@ -28,6 +28,7 @@
 
           <br><br>
           <div style="margin-left: 2%">
+            <el-tooltip content="仅展示 最新/最热 Top10" placement="bottom" effect="light">
             <el-breadcrumb separator-class="el-icon-arrow-right">
               <el-breadcrumb-item :to="{ path: '/' }">热门文章</el-breadcrumb-item>
               <el-breadcrumb-item :to="{ path: '/lastArticle'}">最新文章</el-breadcrumb-item>
@@ -35,6 +36,7 @@
               <el-breadcrumb-item :to="{ path: '/lastAns'}">最新问答</el-breadcrumb-item>
               <el-breadcrumb-item ></el-breadcrumb-item>
             </el-breadcrumb>
+            </el-tooltip>
 
           </div>
           <br><br>
@@ -53,9 +55,16 @@
           <template
             slot="dateCell"
             slot-scope="{date, data}">
-            <p :class="data.isSelected ? 'is-selected' : ''">
-              {{ data.day.split('-').slice(2).join('-') }} {{ data.isSelected ? '✔️' : ''}}
-            </p>
+            <div :class="data.isSelected ? 'is-selected' : ''">
+              <p style="color: #0856ec;font-weight: bold" v-if="getDay==data.day">
+                {{data.day.split('-').slice(2).join('-') }}
+                {{ '✔️'}}
+              </p>
+              <p v-else>
+                {{data.day.split('-').slice(2).join('-') }}
+              </p>
+              {{ data.isSelected ? '✔️' : ''}}
+            </div>
           </template>
         </el-calendar>
         <br>
@@ -92,6 +101,15 @@
 <script>
 export default {
   name: "homepage",
+  computed:{
+    getDay(){
+      let dt = new Date();
+      let year = dt.getFullYear();
+      let month = (dt.getMonth() + 1).toString().padStart(2,'0');
+      let date = dt.getDate().toString().padStart(2,'0');
+      return `${year}-${month}-${date}`;
+    }
+  },
   data(){
     return{
       Items: [

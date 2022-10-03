@@ -63,3 +63,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ## v0.27
 完成博文展示，问答展示页面的编写
 
+## v0.28
+完成基本的PC端用户界面开发
+
+## v0.3
+
+对细节再次优化，增加页面萌宠

@@ -2,12 +2,12 @@
   <div style="width: 90%;margin: 0 auto">
     <vue-particles
       class="login-background"
-      color="#2352e3"
+      color="#97D0F2"
       :particleOpacity="0.7"
-      :particlesNumber="50"
+      :particlesNumber="200"
       shapeType="circle"
       :particleSize="4"
-      linesColor="#2352e3"
+      linesColor="#97D0F2"
       :linesWidth="1"
       :lineLinked="true"
       :lineOpacity="0.8"
@@ -97,7 +97,7 @@ export default {
 .login-background {
   width: 80%;
   margin: 0 auto;
-  height: 100%; /**宽高100%是为了图片铺满屏幕 */
+  height: 1200px;
   z-index: 0;
   position: absolute;
 }
@@ -111,7 +111,7 @@ export default {
 
 }
 .show:hover{
-  box-shadow: 0px 10px 30px rgb(12, 132, 224);
+  box-shadow: 0px 10px 30px rgb(24, 139, 227);
   margin-top: 10px;
 
 }
