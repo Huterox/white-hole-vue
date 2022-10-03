@@ -111,7 +111,7 @@ export default {
 
 }
 .show:hover{
-  box-shadow: 0px 15px 30px rgb(12, 132, 224);
+  box-shadow: 0px 10px 30px rgb(12, 132, 224);
   margin-top: 10px;
 
 }

@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div  style="width:14%;height: 130px;border-radius: 100px;display:inline-block;">
+    <div  style="width:15%;height: 130px;border-radius: 100px;display:inline-block;">
       <img
         style="width:100%;height: 100%;border-radius: 100px"
         src="/static/temporary/headpic.jpg"

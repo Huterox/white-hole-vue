@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="width: 90%;margin: 0 auto">
     <el-container style="height: 600px; border: 1px solid #eee">
       <el-aside width="200px" style="background-color: white">
         <el-menu :default-openeds="['1']">
@@ -184,7 +184,7 @@
         "
       >
         <el-main>
-          <div style="width: 80%;margin: 0 auto">
+          <div style="width: 90%;margin: 0 auto">
             <router-view></router-view>
           </div>
         </el-main>

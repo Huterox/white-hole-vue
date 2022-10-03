@@ -38,8 +38,8 @@
 
       <el-menu-item  index="6">
         <router-link to="/notices">
-          <el-badge :value="200" :max="99" class="item">
-            <el-button icon="el-icon-bell" size="small" ></el-button>
+          <el-badge :value="10" :max="99" class="item">
+            <el-button icon="el-icon-bell" size="big" ></el-button>
           </el-badge>
         </router-link>
       </el-menu-item>

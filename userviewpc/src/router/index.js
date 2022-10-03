@@ -76,7 +76,7 @@ import unityQuizAnsJoinList from "../views/myspace/manageunity/unityQuizAnsJoinL
 Vue.use(Router)
 
 export default new Router({
-  mode: "history",
+  // mode: "history",
   //首页的都是大模块所以必须保持独立
   routes: [
 
