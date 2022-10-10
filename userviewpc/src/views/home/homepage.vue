@@ -28,6 +28,7 @@
 
           <br><br>
           <div style="margin-left: 2%">
+            <el-tooltip content="仅展示 最新/最热 Top10" placement="bottom" effect="light">
             <el-breadcrumb separator-class="el-icon-arrow-right">
               <el-breadcrumb-item :to="{ path: '/' }">热门文章</el-breadcrumb-item>
               <el-breadcrumb-item :to="{ path: '/lastArticle'}">最新文章</el-breadcrumb-item>
@@ -35,6 +36,7 @@
               <el-breadcrumb-item :to="{ path: '/lastAns'}">最新问答</el-breadcrumb-item>
               <el-breadcrumb-item ></el-breadcrumb-item>
             </el-breadcrumb>
+            </el-tooltip>
 
           </div>
           <br><br>

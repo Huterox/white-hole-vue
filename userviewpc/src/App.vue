@@ -8,10 +8,15 @@
 
 <script>
 import home from "./views/home/home";
+import DevicePixelRatio from "./DevicePixelRatio";
+
 export default {
   name: 'App',
   components:{
     home
+  },
+  created() {
+    new DevicePixelRatio().init();
   },
   mounted() {
     setTimeout(() => {
@@ -22,7 +27,7 @@ export default {
         tagMode: false,
         debug: false,
         model: { jsonPath: '../static/live2dw/live2d-widget-model-haru_1/assets/haru01.model.json' },
-        display: { position: 'left', width: 200, height: 450 },  //调整大小,和位置
+        display: { position: 'left', width: 220, height: 450 },  //调整大小,和位置
         mobile: { show: true },   //要不要盯着你的鼠标看
         log: false,
       })

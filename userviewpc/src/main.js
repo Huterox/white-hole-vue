@@ -14,6 +14,8 @@ import global from "./global/global";
 import axios from "axios";
 //引入特效组
 import VueParticles from 'vue-particles'
+
+
 Vue.use(VueParticles)
 // use
 Vue.use(mavonEditor)
@@ -41,3 +43,27 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+Storage.prototype.setExpire=(key, value, expire) =>{
+  let obj={
+    data:value,
+    time:Date.now(),
+    expire:expire
+  };
+  localStorage.setItem(key,JSON.stringify(obj));
+}
+//Storage优化
+Storage.prototype.getExpire= key =>{
+  let val =localStorage.getItem(key);
+  if(!val){
+    return val;
+  }
+  val =JSON.parse(val);
+  if(Date.now()-val.time>val.expire){
+    localStorage.removeItem(key);
+    return null;
+  }
+  return val.data;
+}
+
+

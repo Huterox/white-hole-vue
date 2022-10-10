@@ -54,18 +54,14 @@
            </el-avatar>
           <span style="font-size: large;color: #8c939d">Space</span>
         </span>
-              <el-dropdown-menu slot="dropdown">
+              <el-dropdown-menu slot="dropdown" >
                 <br>
                 <el-dropdown-item >
-                  <router-link to="/userinfo">
-                    <el-button style="width: 100%" type="primary" plain>我的主页</el-button>
-                  </router-link>
+                    <el-button style="width: 100%" type="primary" plain  @click="isLogin('/userinfo')">我的主页</el-button>
                 </el-dropdown-item>
                 <br>
                 <el-dropdown-item>
-                  <router-link to="myspace">
-                    <el-button style="width: 100%" type="primary" plain>个人中心</el-button>
-                  </router-link>
+                    <el-button style="width: 100%" type="primary" plain  @click="isLogin('/myspace')">个人中心</el-button>
                 </el-dropdown-item>
               </el-dropdown-menu>
       </el-dropdown>
@@ -93,7 +89,16 @@ export default {
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
-    }
+    },
+    isLogin(val){
+      let loginToken = sessionStorage.getItem("loginToken")
+      if(loginToken==null){
+        alert("检测到您未登录，请先登录")
+        this.$router.push({path: "/login"});
+      }else {
+        this.$router.push({path: val});
+      }
+    },
   },
 
 }

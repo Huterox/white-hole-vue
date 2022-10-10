@@ -46,3 +46,6 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## v0.3
 完成全部页面的大体编写
+
+## v0.32
+完成基本的用户登录，注册功能

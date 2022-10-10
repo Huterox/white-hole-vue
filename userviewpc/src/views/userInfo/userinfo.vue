@@ -2,12 +2,12 @@
   <div style="width: 90%;margin: 0 auto">
     <vue-particles
       class="login-background"
-      color="#2352e3"
+      color="#97D0F2"
       :particleOpacity="0.7"
-      :particlesNumber="50"
+      :particlesNumber="200"
       shapeType="circle"
       :particleSize="4"
-      linesColor="#2352e3"
+      linesColor="#97D0F2"
       :linesWidth="1"
       :lineLinked="true"
       :lineOpacity="0.8"
@@ -24,15 +24,20 @@
           <div class="show" style="width: 900px">
             <div >
               <div style="width:200px;height: 100%;border-radius: 100px;margin: 0 auto">
-                <img
+                <el-image
                   style="width: 150px;height: 150px;border-radius: 100px;"
-                  src="/static/temporary/headpic.jpg"
+                  :src="User.userpic"
                   class="image"
                 >
+                </el-image>
+                <p>
+                  {{User.nickname}}
+                </p>
               </div>
               <div>
                 <br>
                 <p>
+
                   <el-button @click="focusOn"  v-if="focusOnFlag===false" icon="el-icon-plus" type="primary" plain >
                     <span>关注</span>
                   </el-button>
@@ -45,11 +50,7 @@
             <div>
               <p style="font-size: larger;font-family: 楷体;text-align: center">简介</p>
               <p style="font-size: smaller;width: 65%;margin: 0 auto">
-                凭寄狂夫书一纸，
-                篇什纵横文案少。
-                世人见我轻鸿毛。
-                黄花冷落不成艳，
-                尔亦今年赐服章。
+                 {{User.userinfo}}
               </p>
               <br><br>
             </div>
@@ -76,7 +77,42 @@ export default {
   data(){
     return{
       focusOnFlag:false,
+      User:{
+        userid: null,
+        nickname: null,
+        userpic: null,
+        userinfo: null,
+      }
     }
+  },
+  mounted() {
+  //  我们使用这个来完成对Userinfo信息的一个处理
+  //  先拿到用户的userid,当链接跳转过来的时候
+    let userid = this.$route.query.userid;
+  //默认的用户头像
+    let userpic_base = "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg";
+    this.axios({
+      url: "/user/user/userinfo",
+      method: 'get',
+      params:{
+        'userid': userid,
+      }
+    }).then((res)=>{
+      res = res.data;
+      if(res.code===0){
+        let data = res.User;
+        if(!data.userpic){
+          data.userpic=userpic_base;
+        }
+        if(!data.userinfo){
+          data.userinfo="这个人什么也没说，想必是一代侠客吧！"
+        }
+        this.User = data;
+      }else {
+        this.$message.error(res.msg);
+      }
+    });
+
   },
   methods:{
     focusOn(){
@@ -97,7 +133,7 @@ export default {
 .login-background {
   width: 80%;
   margin: 0 auto;
-  height: 100%; /**宽高100%是为了图片铺满屏幕 */
+  height: 1200px; /**宽高100%是为了图片铺满屏幕 */
   z-index: 0;
   position: absolute;
 }

@@ -1,0 +1,125 @@
+<template>
+  <div>
+    <el-form :model="formLogin" :rules="rules" ref="ruleForm" label-width="0px" >
+      <el-form-item prop="username">
+        <el-input v-model="formLogin.username" placeholder="账号">
+          <i slot="prepend" class="el-icon-s-custom"/>
+        </el-input>
+      </el-form-item>
+      <el-form-item prop="password">
+        <el-input type="password" placeholder="密码" v-model="formLogin.password">
+          <i slot="prepend" class="el-icon-lock"/>
+        </el-input>
+      </el-form-item>
+      <el-form-item prop="code">
+        <el-row :span="24">
+          <el-col :span="12">
+            <el-input v-model="formLogin.code" auto-complete="off"  placeholder="请输入验证码" size=""></el-input>
+          </el-col>
+          <el-col :span="12">
+            <div class="login-code" @click="refreshCode">
+              <!--验证码组件-->
+              <s-identify :identifyCode="identifyCode"></s-identify>
+            </div>
+          </el-col>
+        </el-row>
+      </el-form-item>
+      <el-form-item>
+        <div class="login-btn">
+          <el-button type="primary" @click="submitForm()" style="margin-left: auto;width: 35%">登录</el-button>
+          <el-button type="primary" @click="goRegister" style="margin-left: 27%;width: 35%" >注册</el-button>
+        </div>
+      </el-form-item>
+    </el-form>
+  </div>
+</template>
+
+<script>
+import SIdentify from "../../components/SIdentify/SIdentify";
+export default {
+  name: "loginbyUserName",
+  components: { SIdentify },
+  data() {
+    return{
+      formLogin: {
+        username: "",
+        password: "",
+        code: ""
+      },
+      identifyCodes: '1234567890abcdefjhijklinopqrsduvwxyz',//随机串内容
+      identifyCode: '',
+      // 校验
+      rules: {
+        username:
+          [
+            { required: true, message: "请输入用户名", trigger: "blur" }
+          ],
+        password: [
+          { required: true, message: "请输入密码(区分大小写)", trigger: "blur" }
+        ],
+        code: [
+          { required: true, message: "请输入验证码", trigger: "blur" }
+        ]
+      }
+
+    }
+  },
+  mounted () {
+    // 初始化验证码
+    this.identifyCode = ''
+    this.makeCode(this.identifyCodes, 4)
+  },
+  methods:{
+    refreshCode () {
+      this.identifyCode = ''
+      this.makeCode(this.identifyCodes, 4)
+    },
+    makeCode (o, l) {
+      for (let i = 0; i < l; i++) {
+        this.identifyCode += this.identifyCodes[this.randomNum(0, this.identifyCodes.length)]
+      }
+    },
+    randomNum (min, max) {
+      return Math.floor(Math.random() * (max - min) + min)
+    },
+
+    submitForm(){
+
+      if (this.formLogin.code.toLowerCase() !== this.identifyCode.toLowerCase()) {
+        this.$message.error('请填写正确验证码')
+        this.refreshCode()
+
+      }
+      else {
+        //这边后面做一个提交，服务器验证，通过之后获得token
+        this.axios({
+          url: "/user/user/login",
+          method: 'post',
+          data:{
+            "username":this.formLogin.username,
+            "password":this.formLogin.password
+          }
+        }).then((res)=>{
+            res = res.data
+          if (res.code===10001){
+            alert("请将对应信息填写完整！")
+          }else if(res.code===0){
+            alert("登录成功")
+            sessionStorage.setItem("loginToken",res.loginToken)
+            this.$router.push({ path: '/userinfo', query: {'userid':res.userid} });
+
+          }else {
+            this.$message.error(res.msg);
+          }
+        })
+      }
+    },
+    goRegister(){
+      this.$router.push("/register")
+    }
+  },
+}
+</script>
+
+<style scoped>
+</style>

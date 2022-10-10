@@ -25,6 +25,8 @@
     "jwchat": "^1.0.7",
     "mavon-editor": "^2.10.4",
     "node-sass": "^7.0.1",
+    "postcss-px2rem": "^0.3.0",
+    "px2rem-loader": "^0.1.9",
     "sass-loader": "^12.6.0",
     "stylus": "0.52.4",
     "stylus-loader": "^3.0.1",

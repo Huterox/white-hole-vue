@@ -73,12 +73,24 @@ import unityUserList from "../views/myspace/manageunity/unityUserList";
 import unityUserJoinList from "../views/myspace/manageunity/unityUserJoinList";
 import unityQuizAllList from "../views/myspace/manageunity/unityQuizAllList";
 import unityQuizAnsJoinList from "../views/myspace/manageunity/unityQuizAnsJoinList";
+import login from "../views/login/login";
+import register from "../views/login/register";
 Vue.use(Router)
 
 export default new Router({
-  // mode: "history",
+  mode: "history",
   //首页的都是大模块所以必须保持独立
   routes: [
+    {
+      path: "/login",
+      name: "login",
+      component: login,
+    },
+    {
+      path:'/register',
+      name: "register",
+      component: register
+    },
 
     {
       path:"/manageunity",

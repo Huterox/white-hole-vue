@@ -195,7 +195,7 @@ export default {
 .login-background {
   width: 96%;
   margin: 0 auto;
-  height: 100%; /**宽高100%是为了图片铺满屏幕 */
+  height: 1200px; /**宽高100%是为了图片铺满屏幕 */
   z-index: 0;
   position: absolute;
 }

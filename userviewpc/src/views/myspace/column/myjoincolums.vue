@@ -35,9 +35,8 @@
 
             <div style="display: inline-block;width: 70%;height: 100%">
 
-              <el-button type="primary" round style="height: 50%;width: 100%;display: inline-block">
-                <i class="el-icon-remove">退出</i>
-
+              <el-button type="warning" round style="height: 50%;width: 100%;display: inline-block">
+                退出
               </el-button>
               <br><br><br>
             </div>
