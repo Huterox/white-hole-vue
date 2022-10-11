@@ -91,12 +91,13 @@ export default {
       console.log(key, keyPath);
     },
     isLogin(val){
-      let loginToken = sessionStorage.getItem("loginToken")
-      if(loginToken==null){
+      let loginToken = localStorage.getExpire("loginToken");
+      let userid = localStorage.getExpire("userid");
+      if(loginToken==null || userid==null){
         alert("检测到您未登录，请先登录")
         this.$router.push({path: "/login"});
       }else {
-        this.$router.push({path: val});
+        this.$router.push({path: val,query:{'userid':userid}});
       }
     },
   },
