@@ -49,3 +49,6 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## v0.32
 完成基本的用户登录，注册功能
+
+## v0.33
+完成基本的用户信息页面的接口与前端联调

@@ -50,7 +50,8 @@
         <span class="el-dropdown-link">
            <el-avatar
              :size="50"
-             src="static/image/space3.jpg">
+             src="static/image/space3.jpg"
+           >
            </el-avatar>
           <span style="font-size: large;color: #8c939d">Space</span>
         </span>

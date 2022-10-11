@@ -1,5 +1,11 @@
 <template>
+
   <div style="background-color: rgba(239,250,246,0.53)">
+    <el-empty
+      image="/static/image/empty.gif" :image-size="600" description="暂时木有找到博文~"
+      v-if="isEmpty"
+    >
+    </el-empty>
     <br>
     <br>
     <div style="width: 100%;margin-left: 1%" class="main">
@@ -67,7 +73,8 @@ export default {
   name: "userblogList",
   data(){
     return{
-      total: 99,
+      isEmpty: true,
+      total: 0,
       page: 1,
       limit: 5,
       Messages:[
@@ -91,9 +98,54 @@ export default {
       ]
     }
   },
+  methods:{
+    getDataList(userid){
+      //和先前一样，访问服务地址，并且把当前的一些内容进行缓存，减少服务器的压力
+      //同时，进入到这里的必须带上userid，如果没有带上那就是非法访问
+      let pageSession = sessionStorage.getItem("blogListPageSession");
+      let total = sessionStorage.getItem("blogListTotal");
+      if(pageSession && total){
+        this.Messages = JSON.parse(pageSession);
+        this.total = parseInt(total);
+        this.isEmpty = (this.total === 0);
+      }else {
+        this.axios({
+          url: "/user/user/userinfo/userarticle",
+          method: 'get',
+          params: {
+            'userid': userid,
+            'page': this.page,
+            'limit': this.limit
+          }
+        }).then((res) => {
+          res = res.data;
+          if (res.code === 0) {
+            //这个就是我们的默认展示图片
+            let image_base_user = "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg";
+            let image_base_blog = "https://whiteholecloud-dev.oss-cn-shanghai.aliyuncs.com/2022-09-25/8cee84b4-1d03-483f-8376-14d419d84ca5_03.jpg"
+            //同样的拿到数据后需要临时保存
+            let page = res.page;
+            this.total = page.totalCount;
+            this.Messages = page.list
+            this.isEmpty = (this.total === 0);
+            for (let i=0;i<this.Messages.length;i++)
+            {
+              if(!this.Messages[i].userImg){this.Messages[i].userImg=image_base_user;}
+              if(!this.Messages[i].blogimg){this.Messages[i].blogimg=image_base_blog}
+            }
+            //存储临时缓存
+            sessionStorage.setItem("blogListPageSession", JSON.stringify(this.Messages));
+            sessionStorage.setItem("blogListTotal",page.totalCount);
+
+          } else {
+            this.$message.error(res.msg);
+          }
+        });
+      }
+    }
+  },
   created() {
-    //和先前一样，访问服务地址，并且把当前的一些内容进行缓存，减少服务器的压力
-    //同时，进入到这里的必须带上userid，如果没有带上那就是非法访问
+
     let userid = this.$route.query.userid;
     if(!userid){
       alert("非法访问")
@@ -101,45 +153,8 @@ export default {
       return;
     }
     //这里的逻辑和进入UserInfo页面的类似
-    let pageSession = sessionStorage.getItem("pageSession");
-    let total = sessionStorage.getItem("total");
-    if(pageSession && total){
-      this.Messages = JSON.parse(pageSession);
-      this.total = total;
-    }else {
-      this.axios({
-        url: "/user/user/userinfo/userarticle",
-        method: 'get',
-        params: {
-          'userid': userid,
-          'page': this.page,
-          'limit': this.limit
-        }
-      }).then((res) => {
-        res = res.data;
-        if (res.code === 0) {
-          //这个就是我们的默认展示图片
-          let image_base_user = "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg";
-          let image_base_blog = "https://whiteholecloud-dev.oss-cn-shanghai.aliyuncs.com/2022-09-25/8cee84b4-1d03-483f-8376-14d419d84ca5_03.jpg"
-          //同样的拿到数据后需要临时保存
-          let page = res.page;
-          this.total = page.totalCount;
-          this.Messages = page.list
+    this.getDataList(userid);
 
-          for (let i=0;i<this.Messages.length;i++)
-          {
-            if(!this.Messages[i].userImg){this.Messages[i].userImg=image_base_user;}
-            if(!this.Messages[i].blogimg){this.Messages[i].blogimg=image_base_blog}
-          }
-          //存储临时缓存
-          sessionStorage.setItem("pageSession", JSON.stringify(this.Messages));
-          sessionStorage.setItem("total",this.total);
-
-        } else {
-          this.$message.error(res.msg);
-        }
-      });
-    }
   },
 }
 </script>
