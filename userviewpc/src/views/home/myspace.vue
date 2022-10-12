@@ -204,6 +204,40 @@ export default {
 
     }
   },
+  created() {
+    //先对token再进行验证
+    let loginToken = localStorage.getExpire("LoginToken");
+    let userid = localStorage.getExpire("userid");
+    //这个只有用户自己才能进入，自己只能进入自己对应的MySpace
+    if(loginToken==null && userid==null){
+      alert("检测到您未登录，请先登录")
+      this.$router.push({path: "/login"});
+    }else {
+        //发送token验证token是否正常，否则一样不给过
+      this.axios({
+        url: "/user/user/space/isLogin",
+        method: 'get',
+        headers: {
+          "userid": userid,
+          "loginType": "PcType",
+          "loginToken": loginToken,
+        },
+        params: {
+          'userid': userid,
+        }
+      }).then((res)=>{
+        res = res.data;
+        if (!(res.code === 0)) {
+          alert(res.msg)
+          this.$router.push({path: "/login"});
+        }
+      }).catch((err)=>{
+        alert("未知异常，请重新登录")
+        this.$router.push({path: "/login"});
+      });
+
+    }
+  }
 }
 </script>
 

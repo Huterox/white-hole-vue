@@ -34,6 +34,7 @@ Vue.use(Chat)
 
 //挂载全局变量
 Vue.prototype.global = global;
+Vue.prototype.OverTime = global.OverTime;
 axios.defaults.baseURL = global.baseURL;
 
 /* eslint-disable no-new */

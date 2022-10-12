@@ -1,7 +1,7 @@
 <template>
   <div style="width: 100%">
     <el-empty
-      image="/static/image/empty.gif" :image-size="600" description="看起来好像没有什么问题呀~"
+      image="/static/image/empty.gif" :image-size="600" description="路在前方，莫问东西~"
       v-if="isEmpty"
     >
     </el-empty>

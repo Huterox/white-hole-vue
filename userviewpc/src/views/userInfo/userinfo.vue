@@ -134,6 +134,7 @@ export default {
   },
   methods:{
     focusOn(){
+      //这块我们后面再实现，先把用户的token做好，分布式下的
       this.focusOnFlag=!this.focusOnFlag;
       if(this.focusOnFlag){
         alert("关注成功")

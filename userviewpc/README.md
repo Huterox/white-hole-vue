@@ -52,3 +52,6 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## v0.33
 完成基本的用户信息页面的接口与前端联调
+
+## v0.34
+完成token联调

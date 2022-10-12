@@ -97,7 +97,8 @@ export default {
           method: 'post',
           data:{
             "username":this.formLogin.username,
-            "password":this.formLogin.password
+            "password":this.formLogin.password,
+            "type": "PcType",
           }
         }).then((res)=>{
             res = res.data
@@ -105,11 +106,11 @@ export default {
             alert("请将对应信息填写完整！")
           }else if(res.code===0){
             alert("登录成功")
-            sessionStorage.setItem("loginToken",res.loginToken)
+            localStorage.setExpire("LoginToken",res.PcLoginToken,this.OverTime)
+            localStorage.setExpire("userid",res.userid,this.OverTime)
             this.$router.push({ path: '/userinfo', query: {'userid':res.userid} });
-
           }else {
-            this.$message.error(res.msg);
+            alert(res.msg);
           }
         })
       }

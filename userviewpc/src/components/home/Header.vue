@@ -92,9 +92,9 @@ export default {
       console.log(key, keyPath);
     },
     isLogin(val){
-      let loginToken = localStorage.getExpire("loginToken");
+      let loginToken = localStorage.getExpire("LoginToken");
       let userid = localStorage.getExpire("userid");
-      if(loginToken==null || userid==null){
+      if(loginToken==null && userid==null){
         alert("检测到您未登录，请先登录")
         this.$router.push({path: "/login"});
       }else {

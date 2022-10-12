@@ -7,7 +7,6 @@
       <el-main style="background-color: #fafafa;width: 100%">
         <br>
         <br>
-
         <router-view></router-view>
       </el-main>
     </el-container>
