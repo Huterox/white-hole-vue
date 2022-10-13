@@ -185,7 +185,7 @@
       >
         <el-main>
           <div style="width: 90%;margin: 0 auto">
-            <router-view></router-view>
+            <router-view v-if="update"></router-view>
           </div>
         </el-main>
       </el-container>
@@ -199,12 +199,23 @@
 export default {
   name: "myspace",
   data() {
-
     return {
-
+      update: true
+    }
+  },
+  methods: {
+    reload() {
+      // 移除组件
+      this.update = false
+      // 在组件移除后，重新渲染组件
+      // this.$nextTick可实现在DOM 状态更新后，执行传入的方法。
+      this.$nextTick(() => {
+        this.update = true
+      })
     }
   },
   created() {
+    this.reload();
     //先对token再进行验证
     let loginToken = localStorage.getExpire("LoginToken");
     let userid = localStorage.getExpire("userid");
