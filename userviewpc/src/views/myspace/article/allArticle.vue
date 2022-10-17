@@ -1,9 +1,13 @@
 <template>
   <div style="background-color: rgba(239,250,246,0.53)">
+    <el-empty
+      image="/static/image/empty4.gif" :image-size="300" description="这里什么都没有丫~"
+      v-if="isEmpty"
+    >
+    </el-empty>
     <br>
-
     <br>
-    <div style="width: 80%;margin-left: 1%" class="main">
+    <div v-if="!isEmpty" style="width: 80%;margin-left: 1%" class="main">
       <el-card shadow="hover" v-for="(message,index) in Messages" :key="index">
 
         <div style="height:100px">
@@ -20,7 +24,7 @@
               <router-link class="alink" :to="{ path: '/blogshow',query:{'blogid':message.blogid}}">
                 {{message.blogTitle}}
                 <span class="el-icon-reading"
-                      v-if="message.status==2"
+                      v-if="message.status===2"
                       style="color: #cdda19"
                 >
                   (审核中)
@@ -168,8 +172,6 @@ export default {
       this.loginToken = loginToken;
       this.getDataList();
     }
-
-
   },
 }
 </script>

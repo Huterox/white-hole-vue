@@ -9,7 +9,7 @@
     </el-empty>
     <br>
     <br>
-    <div style="width: 100%;margin-left: 1%" class="main">
+    <div v-if="!isEmpty" style="width: 100%;margin-left: 1%" class="main">
       <el-card shadow="hover" v-for="(message,index) in this.Messages" :key="index">
 
         <div style="height:100px">
