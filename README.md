@@ -75,6 +75,8 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ## v0.34
 完成前端token的基本测试
 
+## v0.36
+完成局部页面优化
 
 
 
