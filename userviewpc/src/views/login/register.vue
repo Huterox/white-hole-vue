@@ -65,7 +65,7 @@
               <el-input v-model="formRegister.emailCode" auto-complete="off"  placeholder="请输入邮箱验证码" size=""></el-input>
             </el-col>
             <el-col :span="12">
-              <div class="login-code" @click="refreshCode">
+              <div class="login-code">
                 <!--发送邮箱验证码-->
                 <el-button @click="getEmailCode()" :disabled="!show"
                            style="margin-left: 26%;width: 70%"
@@ -207,8 +207,6 @@ export default {
               }
             }, 1000)
           }
-
-
         }
 
       }

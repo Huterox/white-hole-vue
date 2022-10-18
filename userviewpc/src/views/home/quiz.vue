@@ -101,11 +101,23 @@ export default {
     }
   },
   methods: {
+    isLogin() {
+      let loginToken = localStorage.getExpire("LoginToken");
+      let userid = localStorage.getExpire("userid");
+      //这个只有用户自己才能进入，自己只能进入自己对应的MySpace
+      if(loginToken==null && userid==null) {
+        alert("检测到您未登录，请先登录")
+        this.$router.push({path: "/login"});
+      }else {
+        this.userid=userid;
+        this.loginToken = loginToken;
+      }
+    },
 
     // 提交
     submit(){
-      //点击提交后既可以获取html内容，又可以获得markdown的内容，之后存入到服务端就可以了
-
+      //这里的话我们先进行用户的登录校验
+      this.isLogin()
       this.dialogFormVisible=true;
     },
     submitForm(formName) {
@@ -122,7 +134,10 @@ export default {
           return false;
         }
       });
+      //在这里进行上传我们的提问
+
     },
+
 
   },
 }

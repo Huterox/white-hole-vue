@@ -1,5 +1,8 @@
 <template>
-  <div style="background-color: rgba(239,250,246,0.53)">
+
+  <div  style="background-color: rgba(239,250,246,0.53)">
+    <el-empty description="建设中..." :image-size="400"></el-empty>
+    <div v-show="show">
     <div class="head" style="width: 90%;margin: 0 auto">
 
       <el-button style="margin-left:74%" type="primary" plain @click="submit">创建专栏</el-button>
@@ -83,7 +86,7 @@
 
     </el-dialog>
 
-
+    </div>
   </div>
 
 </template>
@@ -98,6 +101,7 @@ export default {
   },
   data(){
     return{
+      show: false,
       dialogFormVisible: false,
       total: 4,
       ruleForm: {
