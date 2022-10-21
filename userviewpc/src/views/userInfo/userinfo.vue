@@ -24,6 +24,7 @@
           <div class="show" style="width: 900px;text-align: center">
             <div >
               <div style="width:200px;height: 100%;border-radius: 100px;margin: 0 auto">
+                <br>
                 <el-image
                   style="width: 150px;height: 150px;border-radius: 100px;"
                   :src="User.userpic"
@@ -31,7 +32,7 @@
                 >
                 </el-image>
                 <p>
-                  {{User.nickname}}
+                  <b>{{User.nickname}}</b>
                 </p>
               </div>
               <div>
@@ -104,9 +105,9 @@ export default {
   //默认的用户头像
     let userpic_base = "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg";
     let localUser = sessionStorage.getItem("user")
-    if(localUser){
-        this.User = JSON.parse(localUser)
-    }else {
+    // if(localUser){
+    //     this.User = JSON.parse(localUser)
+    // }else {
       this.axios({
         url: "/user/user/userinfo",
         method: 'get',
@@ -125,12 +126,12 @@ export default {
           }
           this.User = data;
           //成功后在存到本地，这个是临时存储，避免用户信息修改之后出现数据不同步的情况
-          sessionStorage.setItem("user", JSON.stringify(this.User));
+          // sessionStorage.setItem("user", JSON.stringify(this.User));
         } else {
           this.$message.error(res.msg);
         }
       });
-    }
+    // }
   },
   methods:{
     focusOn(){

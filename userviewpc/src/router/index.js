@@ -237,6 +237,11 @@ export default new Router({
           component: quizLast
         },
         {
+          path: "ansshowinfo",
+          name: "ansshowinfo",
+          component: ansshowinfo
+        },
+        {
           path: "quizshow",
           name: "quizshow",
           component: quizshow,
@@ -246,12 +251,7 @@ export default new Router({
               name: "anlist",
               component: anslist
             },
-            {
-              path: "ansshowinfo",
-              name: "ansshowinfo",
-              component: ansshowinfo
-            }
-            ,
+
           ]
 
         }

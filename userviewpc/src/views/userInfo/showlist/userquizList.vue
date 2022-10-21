@@ -14,9 +14,9 @@
 
           <div style="display:inline-block;margin-left: 5%;width: 60%">
             <p class="message" style="font-weight:bold" >
-              <router-link class="alink" to="/quiz/quizshow">
+              <a style="cursor:pointer" class="alink" @click="goto(message)"  >
                 {{message.quizTitle}}
-              </router-link>
+              </a>
             </p>
             <p style="font-weight: lighter;color: #0bdcc5" class="message"
 
@@ -34,7 +34,7 @@
               {{message.quizCollectNumber}}
               &nbsp;&nbsp;
               日期：
-              <i>{{message.createTime}}</i>
+              <i style="font-size: 10px">{{message.createTime}}</i>
             </p>
 
           </div>
@@ -88,16 +88,22 @@ export default {
     }
   },
   methods:{
+    goto(message) {
+      //将问答的一些基本信息存进session里面
+      sessionStorage.setItem("quiz:"+message.quizid, JSON.stringify(message));
+      this.$router.push({ path: '/quiz/quizshow', query: {quizid:message.quizid}});
+    },
+
     getDataList(userid){
       //和先前一样，访问服务地址，并且把当前的一些内容进行缓存，减少服务器的压力
       //同时，进入到这里的必须带上userid，如果没有带上那就是非法访问
-      let pageSession = sessionStorage.getItem("quizListPageSession");
-      let total = sessionStorage.getItem("quizListTotal");
-      if(pageSession && total){
-        this.Messages = JSON.parse(pageSession);
-        this.total = parseInt(total);
-        this.isEmpty = (this.total === 0);
-      }else {
+      // let pageSession = sessionStorage.getItem("quizListPageSession");
+      // let total = sessionStorage.getItem("quizListTotal");
+      // if(pageSession && total){
+      //   this.Messages = JSON.parse(pageSession);
+      //   this.total = parseInt(total);
+      //   this.isEmpty = (this.total === 0);
+      // }else {
         this.axios({
           url: "/user/user/userinfo/userquizList",
           method: 'get',
@@ -130,8 +136,7 @@ export default {
             this.$message.error(res.msg);
           }
         });
-      }
-
+      // }
     }
   },
   created() {

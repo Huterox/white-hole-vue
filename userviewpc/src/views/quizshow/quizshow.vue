@@ -1,23 +1,30 @@
 <template>
-<div style="width: 85%;margin: 0 auto">
+<div  v-if="update" style="width: 85%;margin: 0 auto">
     <br><br><br>
     <div>
       <div class="show">
+        <br>
+        <h3>{{Messages.quizTitle}}</h3>
+        <br>
   <!--      user-->
-        <div style="height:100px">
+        <div style="height:100px;width: 96%;margin: 0 auto">
+          <br>
           <div  style="width:16%;height: 100%;border-radius: 100px;display:inline-block;">
-            <img
+
+            <el-image
               style="width:100%;height: 100%;border-radius: 100px"
-              src="/static/temporary/headpic.jpg"
+              :src="Messages.userImg"
               class="image"
-            >
+            />
           </div>
 
           <div style="display: inline-block;width: 80%;">
             <div style="height: 50%;width: 100%;display: inline-block">
-              <p style="font-family: Microsoft YaHei">Huterox</p>
+              <router-link class="alink" :to="{path: '/userinfo',query:{'userid':Messages.userid}}">
+              <p style="font-family: Microsoft YaHei">{{Messages.userNickname}}</p>
+              </router-link>
 
-              <p class="message">简介: 这个人很懒什么也没说...</p>
+              <p class="message" style="font-size: 15px">日期:{{Messages.createTime}}</p>
 
             </div>
           </div>
@@ -26,26 +33,12 @@
         <div>
           <div style="width: 96%;margin: 0 auto">
             <br><br>
-            <h5>目标检测是如何确定目标框的产生的</h5>
+
             <h6>详情：</h6>
-            <p style="font-family: cursive">将一张图片先人为的认为划分N个区域，将其认为是可能出现的目标中心点
-              将一张图片先人为的认为划分N个区域，将其认为是可能出现的目标中心点
-              将一张图片先人为的认为划分N个区域，将其认为是可能出现的目标中心点
-              将一张图片先人为的认为划分N个区域，将其认为是可能出现的目标中心点
-              将一张图片先人为的认为划分N个区域，将其认为是可能出现的目标中心点
-              将一张图片先人为的认为划分N个区域，将其认为是可能出现的目标中心点
-              将一张图片先人为的认为划分N个区域，将其认为是可能出现的目标中心点
-              将一张图片先人为的认为划分N个区域，将其认为是可能出现的目标中心点
-              将一张图片先人为的认为划分N个区域，将其认为是可能出现的目标中心点
-              将一张图片先人为的认为划分N个区域，将其认为是可能出现的目标中心点
-              将一张图片先人为的认为划分N个区域，将其认为是可能出现的目标中心点
-              将一张图片先人为的认为划分N个区域，将其认为是可能出现的目标中心点
-              将一张图片先人为的认为划分N个区域，将其认为是可能出现的目标中心点
-              将一张图片先人为的认为划分N个区域，将其认为是可能出现的目标中心点
-
-              限制一下，500字
-
-            </p>
+            <div style="font-family: cursive">
+                {{Messages.quizContent}}
+              <p>&nbsp;</p>
+            </div>
           </div>
         </div>
       </div>
@@ -54,15 +47,15 @@
       <div style="width: 96%;margin: 0 auto">
         阅读:
         <i class="el-icon-view"></i>
-        {{Messages.number}}
+        {{Messages.quizViewNumber}}
         &nbsp;&nbsp;
         收藏:
         <i class="el-icon-star-off"></i>
-        {{Messages.collect}}
+        {{Messages.quizCollectNumber}}
         &nbsp;
         点赞:
         <i class="el-icon-check"></i>
-        {{Messages.favorite}}
+        {{Messages.quizLikeNumber}}
 
 
           <el-button type="primary" round style="width: 20%;margin-left: 50px;display: inline-block"
@@ -81,15 +74,11 @@
         width="80%"
         center
       >
-        <writequiz></writequiz>
+        <writequiz v-bind:Messages="this.Messages"></writequiz>
         <span slot="footer" class="dialog-footer">
          </span>
       </el-dialog>
-
-
-      <router-link to="/quiz/quizshow"></router-link>
-
-      <router-view></router-view>
+      <router-view v-if="update"></router-view>
 
 
     </div>
@@ -99,22 +88,79 @@
 
 <script>
 import writequiz from "./writequiz";
+
 export default {
   name: "show",
   components:{
     writequiz
   },
+  created(){
+    this.reload()
+    this.quizid = this.$route.query.quizid;
+    this.Messages = JSON.parse(sessionStorage.getItem("quiz:"+this.quizid));
+    if(!this.Messages){
+      this.getQuiz(this.quizid)
+    }
+
+  },
+  methods: {
+    getQuiz(quizid){
+      this.axios({
+        url: "/quiz/quiz/base/quizById",
+        method: 'get',
+        params: {
+          'quizid': quizid,
+        }
+      }).then((res) => {
+        res = res.data;
+        if (res.code === 0) {
+          //这个就是我们的默认展示图片
+          let image_base_user = "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg";
+          //同样的拿到数据后需要临时保存
+          this.Messages = res.quiz
+          if(!this.Messages.userImg){this.Messages.userImg=image_base_user;}
+          sessionStorage.setItem("quiz:"+this.quizid, JSON.stringify(this.Messages));
+          this.$router.go(0);
+        } else {
+          this.$message.error(res.msg);
+        }
+      });
+    },
+    reload() {
+      // 移除组件
+      this.update = false
+      // 在组件移除后，重新渲染组件
+      // this.$nextTick可实现在DOM 状态更新后，执行传入的方法。
+      this.$nextTick(() => {
+        this.update = true
+      })
+    },
+  },
+  // 这里的话用户会返回啥的，就不要销毁了反正浏览器关了就没了
+  // beforeDestroy() {
+  //   sessionStorage.removeItem(this.quizid)
+  // },
   data(){
     return{
+      update: true,
       dialogVisible:false,
-
+      quizid: null,
       Messages:
-        {"info":"Spring 是一个轻量级的开发框架",
-          "name":"Spring 5 核心原理解析",
-          "number": 999,"data":"2022-3-27","favorite": 999,
-          "collect":100,
+        {
+          userid: null,
+          quizid: null,
+          quizContent: null,
+          quizTitle: null,
+          //这个是提问者的userNickName
+          userNickname: null,
+          userImg: null,
+          quizCollectNumber: null,
+          quizViewNumber: null,
+          quizLikeNumber:null,
+          quizAnsNumber: null,
+          status: null,
+          createTime: null,
         },
-
     }
   },
 }
@@ -139,8 +185,14 @@ export default {
 
 }
 .show:hover{
-  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.4);
-  margin-top: 15px;
+  box-shadow: 0px 10px 30px rgb(12, 132, 224);
+  margin-top: 10px;
+
+}
+.alink{
+
+  text-decoration: none;
+  color: #333333;
 
 }
 </style>

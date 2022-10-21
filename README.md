@@ -78,5 +78,6 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ## v0.36
 完成局部页面优化
 
-
+## v0.37
+解决了页面渲染，Markdown编辑显示的bug
 

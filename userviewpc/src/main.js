@@ -3,22 +3,29 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+
+//使用编辑器Markdown
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+Vue.use(mavonEditor)
+
 //使用element ui
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
-//使用编辑器Markdown
-import mavonEditor from 'mavon-editor'
-import 'mavon-editor/dist/css/index.css'
+
+/*引入差异组件
+* */
+import CodeDiff from 'v-code-diff'
+Vue.use(CodeDiff);
+
+
 import global from "./global/global";
-import axios from "axios";
+import axios from 'axios'
 //引入特效组
 import VueParticles from 'vue-particles'
 
-
 Vue.use(VueParticles)
-// use
-Vue.use(mavonEditor)
 
 Vue.config.productionTip = false
 Vue.prototype.axios = axios

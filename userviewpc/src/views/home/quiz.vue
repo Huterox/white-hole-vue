@@ -18,7 +18,7 @@
             </div>
             <br>
             <div style="width: 98%;margin: 0 auto">
-              <router-view></router-view>
+              <router-view v-if="update"></router-view>
             </div>
           </div>
         </div>
@@ -38,14 +38,11 @@
 
       </el-col>
     </el-row>
-
-
     <el-dialog
       style="width:80%;margin: 0 auto"
       title="创建提问"
       :visible.sync="dialogFormVisible"
     >
-
       <el-form :model="ruleForm"
                :rules="rules"
                ref="ruleForm"
@@ -55,11 +52,8 @@
         <el-form-item label="问题" prop="que" >
           <el-input v-model="ruleForm.que"></el-input>
         </el-form-item>
-
-
-
         <el-form-item label="问题描述" prop="desc">
-          <el-input type="textarea" :rows="10" v-model="ruleForm.desc"></el-input>
+          <el-input aria-placeholder="描述不能低于10和高于500个字符丫" type="textarea" :rows="10" v-model="ruleForm.desc"></el-input>
         </el-form-item>
       </el-form>
 
@@ -70,8 +64,6 @@
 
     </el-dialog>
 
-
-
   </div>
 </template>
 
@@ -80,8 +72,10 @@ export default {
   name: "quiz",
   data(){
     return {
+      update: true,
       dialogFormVisible: false,
-
+      userid: null,
+      loginToken: null,
       ruleForm: {
         que: '',
         desc: '',
@@ -100,11 +94,22 @@ export default {
 
     }
   },
+  created() {
+    this.reload();
+  },
   methods: {
+    reload() {
+      // 移除组件
+      this.update = false
+      // 在组件移除后，重新渲染组件
+      // this.$nextTick可实现在DOM 状态更新后，执行传入的方法。
+      this.$nextTick(() => {
+        this.update = true
+      })
+    },
     isLogin() {
       let loginToken = localStorage.getExpire("LoginToken");
       let userid = localStorage.getExpire("userid");
-      //这个只有用户自己才能进入，自己只能进入自己对应的MySpace
       if(loginToken==null && userid==null) {
         alert("检测到您未登录，请先登录")
         this.$router.push({path: "/login"});
@@ -127,15 +132,45 @@ export default {
             alert("标题不能为空")
             return
           }
-          alert('submit!');
           this.dialogFormVisible = false;
-
         } else {
           return false;
         }
       });
       //在这里进行上传我们的提问
-
+      let flag = true;
+      if(!this.ruleForm.que){
+        flag = false
+      }if(!this.ruleForm.desc){
+        flag = false
+      }
+      if(flag){
+        this.axios({
+          url: "/quiz/quiz/base/upQuiz",
+          method: 'post',
+          headers: {
+            "userid": this.userid,
+            "loginType": "PcType",
+            "loginToken": this.loginToken,
+          },
+          data:{
+            "userid": this.userid,
+            "quizTitle" : this.ruleForm.que,
+            "quizContent": this.ruleForm.desc
+          }
+        }).then((res)=>{
+          res = res.data;
+          if(res.code===0){
+            alert(res.msg)
+            this.ruleForm.que = null;
+            this.ruleForm.desc = null;
+          }else {
+            this.$message.error(res.msg);
+          }
+        });
+      }else {
+        alert("请填写完整！")
+      }
     },
 
 

@@ -1,21 +1,10 @@
 'use strict'
 // Template version: 1.3.1
 // see http://vuejs-templates.github.io/webpack for documentation.
-const px2rem = require('postcss-px2rem');
 
-// 配置基本大小
-const postcss = px2rem({
-  // 基准大小 baseSize，需要和rem.js中相同
-  remUnit: 6,
-});
 const path = require('path')
-// const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+
 module.exports = {
-
-
-  // plugins: [
-  //   new MonacoWebpackPlugin()
-  // ],
   dev: {
 
     // Paths
@@ -31,7 +20,7 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-
+    
     /**
      * Source Maps
      */

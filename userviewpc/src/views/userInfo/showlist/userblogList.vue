@@ -102,13 +102,13 @@ export default {
     getDataList(userid){
       //和先前一样，访问服务地址，并且把当前的一些内容进行缓存，减少服务器的压力
       //同时，进入到这里的必须带上userid，如果没有带上那就是非法访问
-      let pageSession = sessionStorage.getItem("blogListPageSession");
-      let total = sessionStorage.getItem("blogListTotal");
-      if(pageSession && total){
-        this.Messages = JSON.parse(pageSession);
-        this.total = parseInt(total);
-        this.isEmpty = (this.total === 0);
-      }else {
+      // let pageSession = sessionStorage.getItem("blogListPageSession");
+      // let total = sessionStorage.getItem("blogListTotal");
+      // if(pageSession && total){
+      //   this.Messages = JSON.parse(pageSession);
+      //   this.total = parseInt(total);
+      //   this.isEmpty = (this.total === 0);
+      // }else {
         this.axios({
           url: "/user/user/userinfo/userarticle",
           method: 'get',
@@ -141,7 +141,7 @@ export default {
             this.$message.error(res.msg);
           }
         });
-      }
+      // }
     }
   },
   created() {

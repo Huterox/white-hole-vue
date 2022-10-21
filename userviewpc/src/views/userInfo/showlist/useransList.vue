@@ -12,11 +12,19 @@
 
         <div style="height:100px">
           <div style="display:inline-block;margin-left: 5%;width: 60%">
-            <p class="message" style="font-weight:bold">{{message.quizTitle}}</p>
-            <p style="font-weight: lighter; color: #bae88a;" class="message"
+            <el-tooltip content="查看提问" placement="top" effect="light">
+              <a style="cursor:pointer" class="alink" @click="gotoquiz(message)"  >
+                <p class="message" style="font-weight:bold">{{message.quizTitle}}</p>
+              </a>
+            </el-tooltip>
+            <p style="font-weight: lighter; color: #25c1e5;" class="message"
 
             >
-              {{message.creatTime}}
+              <a class="alink1" @click="goto(message)" style="cursor:default">
+                <el-tooltip content="查看回答" placement="bottom" effect="light">
+                  <span style="font-size: 12px"> {{message.creatTime}}</span>
+                </el-tooltip>
+              </a>
 
             </p>
             <p class="message">
@@ -81,16 +89,24 @@ export default {
     }
   },
   methods:{
+    gotoquiz(message){
+      this.$router.push({ path: '/quiz/quizshow', query: {quizid:message.quizid}});
+    },
+    goto(message) {
+      //将问答的一些基本信息存进session里面
+      sessionStorage.setItem("ans:"+message.ansid, JSON.stringify(message));
+      this.$router.push({ path: '/quiz/ansshowinfo', query: {ansid:message.ansid}});
+    },
     getDataList(userid){
       //和先前一样，访问服务地址，并且把当前的一些内容进行缓存，减少服务器的压力
       //同时，进入到这里的必须带上userid，如果没有带上那就是非法访问
-      let pageSession = sessionStorage.getItem("ansListPageSession");
-      let total = sessionStorage.getItem("ansListTotal");
-      if(pageSession && total){
-        this.Messages = JSON.parse(pageSession);
-        this.total = parseInt(total);
-        this.isEmpty = (this.total === 0);
-      }else {
+      // let pageSession = sessionStorage.getItem("ansListPageSession");
+      // let total = sessionStorage.getItem("ansListTotal");
+      // if(pageSession && total){
+      //   this.Messages = JSON.parse(pageSession);
+      //   this.total = parseInt(total);
+      //   this.isEmpty = (this.total === 0);
+      // }else {
         this.axios({
           url: "/user/user/userinfo/useransList",
           method: 'get',
@@ -116,14 +132,14 @@ export default {
               if(!this.Messages[i].blogimg){this.Messages[i].blogimg=image_base_ans}
             }
             //存储临时缓存
-            sessionStorage.setItem("ansListPageSession", JSON.stringify(this.Messages));
-            sessionStorage.setItem("ansListTotal",page.totalCount);
+            // sessionStorage.setItem("ansListPageSession", JSON.stringify(this.Messages));
+            // sessionStorage.setItem("ansListTotal",page.totalCount);
 
           } else {
             this.$message.error(res.msg);
           }
         });
-      }
+      // }
 
     }
   },

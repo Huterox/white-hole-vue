@@ -205,6 +205,10 @@ input {
   font-size: 15px;
 
 }
+#main{
+  width: 90%;
+  margin: 0 auto;
+}
 
 </style>
 

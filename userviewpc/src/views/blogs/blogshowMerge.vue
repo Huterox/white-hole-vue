@@ -68,10 +68,8 @@
   </div>
 </template>
 <script>
-import CodeDiff from 'vue-code-diff'
 export default {
   name: "blogshowMerge",
-  components: {CodeDiff},
   data() {
     return {
       oldStr: '这里是测试数据\n用于测试',
